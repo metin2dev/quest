@@ -1,0 +1,4400 @@
+QUEST : dragon_soul
+STATE : start
+WHEN  : 30270.pick
+	with pc . level >= 30
+STATE : state_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20001.chat (gameforge.dragon_soul._030_npcChat)
+STATE : state_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20001.chat (gameforge.dragon_soul._050_npcChat)
+STATE : state_3
+WHEN  : 20001.chat (gameforge.dragon_soul._100_npcChat)
+WHEN  : 20001.chat (gameforge.dragon_soul._050_npcChat)
+QUEST : dragon_soul_refine
+STATE : start
+WHEN  : 20001.chat (gameforge.dragon_soul_refine._010_npcChat)
+	with ds . is_qualified ( ) ~= 0
+QUEST : cube_opener_list
+STATE : start
+WHEN  : 20378.take
+WHEN  : 20383.take or
+WHEN  : 20018.take or
+WHEN  : 20017.take or
+WHEN  : 20015.take
+QUEST : test_att_resist
+STATE : start
+WHEN  : 20001.chat ("ATT_TEST : ITEM - BASIC")
+	with is_test_server ( )
+WHEN  : 20001.chat ("ATT_TEST : ITEM - FIRE")
+	with is_test_server ( )
+WHEN  : 20001.chat ("ATT_TEST : ITEM - ELEC")
+	with is_test_server ( )
+WHEN  : 20001.chat ("ATT_TEST : ITEM - WIND")
+	with is_test_server ( )
+WHEN  : 20001.chat ("ATT_TEST : MOB - FIRE")
+	with is_test_server ( )
+WHEN  : 20001.chat ("ATT_TEST : MOB - ELEC")
+	with is_test_server ( )
+WHEN  : 20001.chat ("ATT_TEST : MOB - WIND")
+	with is_test_server ( )
+QUEST : entry_event_map
+STATE : start
+FUNCTION enter_level(vnum1,vnum2)
+FUNCTION warp_to_map(modu)
+FUNCTION check_limit()
+FUNCTION player_dialog()
+FUNCTION gm_exit_check()
+WHEN  : login or
+WHEN  : enter
+WHEN  : 11001.chat (gameforge.entry_event_map._080_npcChat) or
+WHEN  : 11003.chat (gameforge.entry_event_map._080_npcChat) or
+WHEN  : 11005.chat (gameforge.entry_event_map._080_npcChat)
+	with game . get_event_flag ( "event_map_active" ) == 1
+WHEN  : 11001.chat (gameforge.entry_event_map._090_npcChat) or
+WHEN  : 11003.chat (gameforge.entry_event_map._090_npcChat) or
+WHEN  : 11005.chat (gameforge.entry_event_map._090_npcChat)
+	with pc . get_gm_level ( ) == 5
+QUEST : assassin_shop_box
+STATE : start
+FUNCTION give_costume_item(costume_vnum,duration)
+WHEN  : 38054.use
+QUEST : christmas_costume_shop_box
+STATE : start
+FUNCTION give_costume_item(costume_vnum,duration)
+WHEN  : 38056.use
+QUEST : charge_cash_by_voucher
+STATE : start
+FUNCTION charge(amount,charge_type)
+WHEN  : 80014.use or
+WHEN  : 80015.use or
+WHEN  : 80016.use or
+WHEN  : 80017.use
+QUEST : ring_warp
+STATE : start
+WHEN  : 10031.sig_use
+QUEST : olympic_event_box
+STATE : start
+FUNCTION set_settings()
+FUNCTION give_costume_item()
+WHEN  : 50130.use
+QUEST : energy_system
+STATE : start
+WHEN  : alchemist.chat (gameforge.energy_system._001_npcChat)
+STATE : can_make
+FUNCTION setting()
+FUNCTION getItemNum(str,r)
+WHEN  : alchemist.chat (gameforge.energy_system._035_npcChat)
+WHEN  : alchemist.take
+WHEN  : alchemist.chat (gameforge.energy_system._160_npcChat)
+QUEST : is_yang
+STATE : start
+WHEN  : 38010.use
+QUEST : harvest_festival
+STATE : start
+FUNCTION reset_flags()
+FUNCTION kill_action(mob_vnum,kill_state)
+FUNCTION get_random_rice(type)
+WHEN  : login
+	with pc . get_level ( ) > 0
+STATE : information
+WHEN  : letter
+	with game . get_event_flag ( "harvest_festival" ) > 0
+WHEN  : login
+	with game . get_event_flag ( "harvest_festival" ) == 0
+WHEN  : 20087.chat (gameforge.harvest_festival._025_npcChat)
+	with game . get_event_flag ( "harvest_festival" ) > 0
+WHEN  : 20086.chat ("Harvest Event Commands")
+	with pc . get_gm_level ( ) == 5
+WHEN  : 20086.chat (gameforge.harvest_festival._250_npcChat)
+	with game . get_event_flag ( "harvest_festival" ) > 0
+STATE : mob_kill1
+WHEN  : letter
+WHEN  : login
+	with game . get_event_flag ( "harvest_festival" ) == 0
+WHEN  : info or
+WHEN  : button
+WHEN  : 20086.chat (gameforge.harvest_festival._570_npcChat)
+	with game . get_event_flag ( "harvest_festival" ) > 0
+WHEN  : 20087.click
+	with game . get_event_flag ( "harvest_festival" ) > 0
+WHEN  : 2502.kill
+	with pc . getf ( "harvest_festival" , "mob1_info" ) == 6
+WHEN  : 2202.kill
+	with pc . getf ( "harvest_festival" , "mob1_info" ) == 5
+WHEN  : 701.kill
+	with pc . getf ( "harvest_festival" , "mob1_info" ) == 4
+WHEN  : 501.kill
+	with pc . getf ( "harvest_festival" , "mob1_info" ) == 3
+WHEN  : 301.kill
+	with pc . getf ( "harvest_festival" , "mob1_info" ) == 2
+WHEN  : 105.kill
+	with pc . getf ( "harvest_festival" , "mob1_info" ) == 1
+STATE : mob_kill2
+WHEN  : letter
+WHEN  : login
+	with game . get_event_flag ( "harvest_festival" ) == 0
+WHEN  : info or
+WHEN  : button
+WHEN  : 20086.chat (gameforge.harvest_festival._750_npcChat)
+	with game . get_event_flag ( "harvest_festival" ) > 0
+WHEN  : 20087.click
+	with game . get_event_flag ( "harvest_festival" ) > 0
+WHEN  : 108.kill
+	with pc . getf ( "harvest_festival" , "mob2_info" ) == 10 and party . is_party ( )
+WHEN  : 109.kill
+	with pc . getf ( "harvest_festival" , "mob2_info" ) == 9 and party . is_party ( )
+WHEN  : 113.kill
+	with pc . getf ( "harvest_festival" , "mob2_info" ) == 1 and party . is_party ( )
+WHEN  : 502.kill
+	with pc . getf ( "harvest_festival" , "mob2_info" ) == 2 and party . is_party ( )
+WHEN  : 703.kill
+	with pc . getf ( "harvest_festival" , "mob2_info" ) == 3 and party . is_party ( )
+WHEN  : 707.kill
+	with pc . getf ( "harvest_festival" , "mob2_info" ) == 4 and party . is_party ( )
+WHEN  : 1305.kill
+	with pc . getf ( "harvest_festival" , "mob2_info" ) == 5 and party . is_party ( )
+WHEN  : 2205.kill
+	with pc . getf ( "harvest_festival" , "mob2_info" ) == 6 and party . is_party ( )
+WHEN  : 2501.kill
+	with pc . getf ( "harvest_festival" , "mob2_info" ) == 7 and party . is_party ( )
+WHEN  : 2503.kill
+	with pc . getf ( "harvest_festival" , "mob2_info" ) == 8 and party . is_party ( )
+QUEST : ride_ticket_change
+STATE : start
+WHEN  : 20349.chat (gameforge.ride_ticket_change._010_npcChat)
+	with table . getn ( { pc . get_sig_items ( 10032 ) } ) > 0
+QUEST : training_mount
+STATE : start
+FUNCTION check_list(material,pc_level,horse_level)
+FUNCTION extraTime(typ)
+WHEN  : 20349.chat (gameforge.training_mount._04_say)
+STATE : main_point
+WHEN  : 20349.chat (gameforge.training_mount._08_say)
+WHEN  : 20349.take
+	with 52001 <= item . vnum and item . vnum <= 52005 or 52016 <= item . vnum and item . vnum <= 52020 or 52031 <= item . vnum and item . vnum <= 52035 or 52046 <= item . vnum and item . vnum <= 52050 or 52061 <= item . vnum and item . vnum <= 52065 or 52076 <= item . vnum and item . vnum <= 52080
+WHEN  : 20349.take
+	with 52006 <= item . vnum and item . vnum <= 52010 or 52021 <= item . vnum and item . vnum <= 52025 or 52036 <= item . vnum and item . vnum <= 52040 or 52051 <= item . vnum and item . vnum <= 52055 or 52081 <= item . vnum and item . vnum <= 52085 or 52066 <= item . vnum and item . vnum <= 52070
+WHEN  : 20349.take
+	with 52011 <= item . vnum and item . vnum <= 52015 or 52026 <= item . vnum and item . vnum <= 52031 or 52041 <= item . vnum and item . vnum <= 52045 or 52056 <= item . vnum and item . vnum <= 52061 or 52086 <= item . vnum and item . vnum <= 52091 or 52071 <= item . vnum and item . vnum <= 52075
+WHEN  : 20349.chat (gameforge.training_mount._23_say)
+QUEST : ride_xmas
+STATE : start
+FUNCTION Ride(vnum,remain_time)
+WHEN  : login
+WHEN  : 52061.use or
+WHEN  : 52062.use or
+WHEN  : 52063.use or
+WHEN  : 52064.use or
+WHEN  : 52065.use or
+WHEN  : 52066.use or
+WHEN  : 52067.use or
+WHEN  : 52068.use or
+WHEN  : 52069.use or
+WHEN  : 52070.use or
+WHEN  : 52071.use or
+WHEN  : 52072.use or
+WHEN  : 52073.use or
+WHEN  : 52074.use or
+WHEN  : 52075.use or
+WHEN  : 52076.use or
+WHEN  : 52077.use or
+WHEN  : 52078.use or
+WHEN  : 52079.use or
+WHEN  : 52080.use or
+WHEN  : 52081.use or
+WHEN  : 52082.use or
+WHEN  : 52083.use or
+WHEN  : 52084.use or
+WHEN  : 52085.use or
+WHEN  : 52086.use or
+WHEN  : 52087.use or
+WHEN  : 52088.use or
+WHEN  : 52089.use or
+WHEN  : 52090.use or
+WHEN  : 71164.use
+QUEST : ride_upgradable
+STATE : start
+FUNCTION increaseTime()
+FUNCTION Ride(vnum,remain_time)
+WHEN  : login
+WHEN  : 52001.use or
+WHEN  : 52002.use or
+WHEN  : 52003.use or
+WHEN  : 52004.use or
+WHEN  : 52005.use or
+WHEN  : 52006.use or
+WHEN  : 52007.use or
+WHEN  : 52008.use or
+WHEN  : 52009.use or
+WHEN  : 52010.use or
+WHEN  : 52011.use or
+WHEN  : 52012.use or
+WHEN  : 52013.use or
+WHEN  : 52014.use or
+WHEN  : 52015.use or
+WHEN  : 52016.use or
+WHEN  : 52017.use or
+WHEN  : 52018.use or
+WHEN  : 52019.use or
+WHEN  : 52020.use or
+WHEN  : 52021.use or
+WHEN  : 52022.use or
+WHEN  : 52023.use or
+WHEN  : 52024.use or
+WHEN  : 52025.use or
+WHEN  : 52026.use or
+WHEN  : 52027.use or
+WHEN  : 52028.use or
+WHEN  : 52029.use or
+WHEN  : 52030.use or
+WHEN  : 52031.use or
+WHEN  : 52032.use or
+WHEN  : 52033.use or
+WHEN  : 52034.use or
+WHEN  : 52035.use or
+WHEN  : 52036.use or
+WHEN  : 52037.use or
+WHEN  : 52038.use or
+WHEN  : 52039.use or
+WHEN  : 52040.use or
+WHEN  : 52041.use or
+WHEN  : 52042.use or
+WHEN  : 52043.use or
+WHEN  : 52044.use or
+WHEN  : 52045.use or
+WHEN  : 52046.use or
+WHEN  : 52047.use or
+WHEN  : 52048.use or
+WHEN  : 52049.use or
+WHEN  : 52050.use or
+WHEN  : 52051.use or
+WHEN  : 52052.use or
+WHEN  : 52053.use or
+WHEN  : 52054.use or
+WHEN  : 52055.use or
+WHEN  : 52056.use or
+WHEN  : 52057.use or
+WHEN  : 52058.use or
+WHEN  : 52059.use or
+WHEN  : 52060.use
+QUEST : ride_mystery_boxes
+STATE : start
+FUNCTION Ride(vnum,remain_time)
+WHEN  : login
+WHEN  : 71124.use or
+WHEN  : 71125.use or
+WHEN  : 71126.use or
+WHEN  : 71127.use or
+WHEN  : 71128.use or
+WHEN  : 71137.use or
+WHEN  : 71138.use or
+WHEN  : 71139.use or
+WHEN  : 71140.use or
+WHEN  : 71141.use or
+WHEN  : 71142.use
+QUEST : ride_ramadan
+STATE : start
+FUNCTION Ride(vnum,remain_time)
+WHEN  : login
+WHEN  : 71131.use or
+WHEN  : 71132.use or
+WHEN  : 71133.use or
+WHEN  : 71134.use or
+WHEN  : 71161.use
+QUEST : new_valentine_day_gift_box
+STATE : start
+FUNCTION give_item_with_log(vnum,amount,item_id)
+FUNCTION gift(item_id)
+WHEN  : 71146.use
+WHEN  : 71147.use
+QUEST : new_easter_gift_box_gf
+STATE : start
+FUNCTION give_item_with_log(vnum,amount,item_id)
+FUNCTION gift(item_id)
+WHEN  : 71150.use
+QUEST : devilcatacomb_zone
+STATE : start
+FUNCTION is_closed()
+FUNCTION setting()
+WHEN  : login
+WHEN  : logout
+WHEN  : devilcatacomb_ban_timer.timer
+WHEN  : warp_timer.timer
+WHEN  : devilcatacomb_man.chat (gameforge.devilcatacomb_zone._100_npcChat)
+	with not devilcatacomb_zone . is_closed ( )
+WHEN  : kill
+FUNCTION spawn_doors()
+WHEN  : devilcatacomb_credit_stone.take
+WHEN  : devilcatacomb_45m_left_timer.server_timer
+WHEN  : devilcatacomb_30m_left_timer.server_timer
+WHEN  : devilcatacomb_15m_left_timer.server_timer
+WHEN  : devilcatacomb_5m_left_timer.server_timer
+WHEN  : devilcatacomb_1m_left_timer.server_timer
+WHEN  : devilcatacomb_0m_left_timer.server_timer
+FUNCTION is_dc2_doors_clear()
+WHEN  : devilcatacomb_floor2_stone.click
+WHEN  : devilcatacomb_floor3_enter_timer.timer
+WHEN  : devilcatacomb3_stone.kill
+WHEN  : devilcatacomb_floor4_enter_timer.timer
+WHEN  : devilcatacomb_floor4_stone.click
+WHEN  : devilcatacomb_devil_king.kill
+WHEN  : devilcatacomb_floor5_stone.take
+WHEN  : devilcatacomb_floor6_timer.timer
+WHEN  : devilcatacomb_devil_great_king.kill
+WHEN  : floor6_eli_check_timer_1.server_timer
+WHEN  : floor6_eli_check_timer_2.server_timer
+WHEN  : devilcatacomb_floor7_timer.server_timer
+WHEN  : devilcatacomb_floor7_say_timer.server_timer
+WHEN  : devilcatacomb_devil_emperor.kill
+WHEN  : floor7_eli_check_timer_1.server_timer
+WHEN  : floor7_eli_check_timer_2.server_timer
+WHEN  : devilcatacomb_exit_timer.server_timer
+QUEST : event_halloween_hair
+STATE : start
+FUNCTION is_running()
+FUNCTION setting()
+FUNCTION get_hair_option(index)
+FUNCTION get_random_hair_option_index()
+FUNCTION get_hair_info_by_race(race)
+WHEN  : login or
+WHEN  : enter
+	with game . get_event_flag ( "halloween_hair" ) > 0
+WHEN  : 33008.chat (gameforge.event_halloween_hair._10_npcChat)
+	with pc . getqf ( "first_notice" ) < 1
+WHEN  : 33008.chat (gameforge.event_halloween_hair._60_npcChat)
+	with pc . getqf ( "first_notice" ) == 1
+WHEN  : 30322.use
+WHEN  : 74020.use or
+WHEN  : 74270.use or
+WHEN  : 74520.use or
+WHEN  : 74770.use or
+WHEN  : 75020.use or
+WHEN  : 75220.use or
+WHEN  : 75420.use or
+WHEN  : 75620.use
+QUEST : event_ramadan
+STATE : start
+FUNCTION is_running()
+FUNCTION reward_period()
+FUNCTION setting()
+WHEN  : login or
+WHEN  : enter
+	with event_ramadan . is_running ( )
+WHEN  : 33002.chat (gameforge.event_ramadan._010_npcChat)
+	with pc . getf ( "event_ramadan" , "first_notice" ) == 0
+WHEN  : 33002.chat (gameforge.event_ramadan._070_npcChat)
+	with pc . getf ( "event_ramadan" , "first_notice" ) == 1
+WHEN  : 33002.chat (gameforge.event_ramadan._180_npcChat)
+	with pc . getqf ( "first_notice" ) == 1
+WHEN  : 33003.chat (gameforge.event_ramadan._220_npcChat) or
+WHEN  : 33004.chat (gameforge.event_ramadan._220_npcChat) or
+WHEN  : 33005.chat (gameforge.event_ramadan._220_npcChat) or
+WHEN  : 33006.chat (gameforge.event_ramadan._220_npcChat) or
+WHEN  : 33007.chat (gameforge.event_ramadan._220_npcChat)
+WHEN  : 33002.chat (gameforge.event_ramadan._290_npcChat)
+	with pc . getf ( "event_ramadan" , "fig_exchange" ) == 0
+WHEN  : 33002.chat (gameforge.event_ramadan._320_npcChat)
+	with event_ramadan . reward_period ( ) and pc . getf ( "event_ramadan" , "fig_exchange" ) == 0
+WHEN  : 30316.use
+QUEST : pet_system
+STATE : start
+FUNCTION get_pet_info(itemVnum)
+FUNCTION get_spawn_effect_file(idx)
+WHEN  : 53007.use or
+WHEN  : 53013.use or
+WHEN  : 53012.use or
+WHEN  : 53011.use or
+WHEN  : 53010.use or
+WHEN  : 53006.use or
+WHEN  : 53005.use or
+WHEN  : 53002.use or
+WHEN  : 53001.use or
+WHEN  : 53003.use
+QUEST : event_easter_2012
+STATE : start
+FUNCTION is_running()
+FUNCTION has_rabbit()
+FUNCTION get_settings()
+FUNCTION get_reward_table_for_item()
+FUNCTION get_reward_amount_for_vnum(reward_table,vnum_to_search)
+FUNCTION get_number_of_eggs()
+FUNCTION get_random_reward_vnum(reward_table)
+FUNCTION spawn_metin(level,empire)
+FUNCTION spawn_metin_at_login()
+FUNCTION metin_killed(vnum)
+WHEN  : login or
+WHEN  : enter
+	with event_easter_2012 . has_rabbit ( )
+WHEN  : login or
+WHEN  : enter
+	with event_easter_2012 . is_running ( )
+WHEN  : 30129.chat (gameforge.main_quest_lv2._10_npcChat)
+	with event_easter_2012 . get_number_of_eggs ( ) == 0
+WHEN  : 30129.chat (gameforge.event_easter._040_chat)
+	with event_easter_2012 . get_number_of_eggs ( ) > 0
+WHEN  : 8041.kill
+WHEN  : 8042.kill
+WHEN  : 8043.kill
+WHEN  : 8044.kill
+WHEN  : 8045.kill
+WHEN  : 8046.kill
+WHEN  : 8047.kill
+WHEN  : 8048.kill
+WHEN  : 8049.kill
+WHEN  : 8050.kill
+QUEST : mystery_key
+STATE : start
+FUNCTION get_master_key()
+FUNCTION get_key_for_chest(chest_vnum)
+FUNCTION get_reward_for_chest(chest_vnum)
+FUNCTION open_chest(chest_vnum,key_vnum)
+WHEN  : 50132.use
+QUEST : dragon_lair_weekly
+STATE : start
+FUNCTION set_settings()
+WHEN  : login or
+WHEN  : enter or
+WHEN  : levelup
+	with pc . get_level ( ) >= 85
+STATE : getquest
+WHEN  : enter
+WHEN  : 30122.chat (gameforge.dragon_lair_weekly._010_chat)
+	with pc . get_map_index ( ) == 73
+STATE : hunt_item
+FUNCTION get_amount_remaining()
+FUNCTION get_time_remaining()
+WHEN  : login
+WHEN  : enter
+WHEN  : info or
+WHEN  : button
+WHEN  : dragon_lair_weekly_timer.timer
+WHEN  : 30122.chat (gameforge.dragon_lair_weekly._010_chat)
+	with pc . get_map_index ( ) == 73
+QUEST : shop_reminder
+STATE : start
+FUNCTION valid_account_id(frequency)
+WHEN  : 30316.use
+QUEST : ghost_story
+STATE : start
+WHEN  : 30121.chat (gameforge.ghost_story._020_npcChat)
+	with pc . get_map_index ( ) == 73
+WHEN  : 30122.chat (gameforge.ghost_story._310_npcChat)
+WHEN  : 30121.chat (gameforge.ghost_story._100_npcChat)
+	with pc . get_map_index ( ) == 73
+QUEST : dragon_lair_access
+STATE : start
+FUNCTION get_settings()
+FUNCTION get_random_point(area_coordinates)
+FUNCTION warp_to_lair()
+FUNCTION warp_from_lair()
+FUNCTION warp_all_from_lair()
+FUNCTION get_time_remaining()
+FUNCTION give_item_to_ghost()
+FUNCTION show_time_remaining(time_remaining)
+WHEN  : enter or
+WHEN  : login
+WHEN  : blue_dragon_timer.server_timer
+WHEN  : 30121.chat (gameforge.dragon_lair_access._010_npcChat)
+	with pc . get_map_index ( ) ~= 208
+WHEN  : 30121.chat (gameforge.dragon_lair_access._110_npcChat)
+	with pc . get_map_index ( ) == 208
+WHEN  : dragon_lair_warptimer.timer
+STATE : spawn_dragon
+WHEN  : login
+WHEN  : 30121.chat (gameforge.dragon_lair_access._110_npcChat)
+	with pc . get_map_index ( ) == 208
+STATE : kill_dragon
+WHEN  : dragon_lair_timer.timer
+WHEN  : login
+WHEN  : button or
+WHEN  : info
+WHEN  : 30121.chat (gameforge.dragon_lair_access._110_npcChat)
+	with pc . get_map_index ( ) == 208
+WHEN  : 20009.chat (gameforge.dragon_lair_access._190_npcChat) or
+WHEN  : 9012.chat (gameforge.dragon_lair_access._190_npcChat) or
+WHEN  : 30121.chat (gameforge.dragon_lair_access._190_npcChat)
+	with pc . get_map_index ( ) ~= 208
+WHEN  : 2493.kill
+	with pc . get_map_index ( ) == 208
+QUEST : dragon_lair
+STATE : start
+WHEN  : 8031.kill or
+WHEN  : 8032.kill or
+WHEN  : 8033.kill or
+WHEN  : 8034.kill
+QUEST : ride_mount_change
+STATE : start
+WHEN  : 20090.chat (gameforge.ride_mount_change._010_npcChat)
+	with pc . get_map_index ( ) == 72
+QUEST : ride
+STATE : start
+FUNCTION Ride(vnum,remain_time)
+WHEN  : login
+WHEN  : 71114.use or
+WHEN  : 71115.use or
+WHEN  : 71116.use or
+WHEN  : 71117.use or
+WHEN  : 71118.use or
+WHEN  : 71119.use or
+WHEN  : 71120.use or
+WHEN  : 71121.use
+QUEST : heavens_cave_escape
+STATE : start
+WHEN  : login or
+WHEN  : levelup
+	with pc . level >= 75
+STATE : heavens_cave_escape
+WHEN  : 20090.chat (gameforge.heavens_cave_escape._010_npcChat)
+	with pc . get_map_index ( ) == 72
+QUEST : check_collect_reward
+STATE : start
+WHEN  : 20018.chat (gameforge.check_collect_reward._010_npcChat)
+QUEST : heavens_cave_keyquest
+STATE : start
+WHEN  : login or
+WHEN  : levelup
+	with pc . get_level ( ) >= 75
+STATE : check_cooldown
+WHEN  : enter or
+WHEN  : login
+WHEN  : 20095.chat (gameforge.heavens_cave_keyquest._020_npcChat)
+STATE : initialize
+WHEN  : enter or
+WHEN  : login
+STATE : search_spirit_forest
+FUNCTION generate_unique_rnd_table(SourceListDepth,TargetListDepth)
+FUNCTION find_tear(Identifier)
+WHEN  : enter or
+WHEN  : login
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TEAR1__.arrive)
+WHEN  : target (__TEAR2__.arrive)
+WHEN  : target (__TEAR3__.arrive)
+WHEN  : target (__TEAR4__.arrive)
+WHEN  : target (__TEAR5__.arrive)
+WHEN  : target (__TEAR6__.arrive)
+WHEN  : target (__TEAR7__.arrive)
+WHEN  : 2204.kill
+STATE : tears_for_seon
+WHEN  : enter or
+WHEN  : login
+WHEN  : button or
+WHEN  : info
+WHEN  : 20095.chat (gameforge.heavens_cave_keyquest._020_npcChat)
+STATE : search_spirit
+WHEN  : enter or
+WHEN  : login
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__VOICE__.arrive)
+STATE : blood_for_seon
+WHEN  : enter or
+WHEN  : login
+WHEN  : button or
+WHEN  : info
+WHEN  : 20095.chat (gameforge.heavens_cave_keyquest._020_npcChat)
+QUEST : arena_manager
+STATE : start
+WHEN  : 20017.chat (gameforge.arena_manager._10_npcChat)
+WHEN  : 20017.chat (gameforge.arena_manager._190_npcChat)
+QUEST : blacksmith
+STATE : start
+WHEN  : blacksmith.chat (gameforge.blacksmith._10_npcChat)
+QUEST : buy_fishrod
+STATE : start
+WHEN  : 9009.chat (gameforge.buy_fishrod._10_npcChat)
+	with pc . level >= 7 and pc . level <= 17
+STATE : notify_event
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+STATE : play_event
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 9009.chat (gameforge.buy_fishrod._170_npcChat)
+	with pc . countitem ( "27833" ) >= 5
+WHEN  : 9009.chat (gameforge.buy_fishrod._170_npcChat)
+	with pc . countitem ( "27833" ) < 5
+STATE : reward
+WHEN  : letter
+WHEN  : button
+STATE : __COMPLETE__
+WHEN  : enter
+QUEST : change_empire
+STATE : start
+WHEN  : 20090.chat (gameforge.change_empire._10_npcChat)
+	with game . get_event_flag ( "c_e" ) > 0
+WHEN  : 71054.use
+FUNCTION move_pc()
+QUEST : change_guild_master
+STATE : start
+FUNCTION change_master(name,level_limit,time_resign_limit,time_be_other_leader,time_be_other_member,iscacheitem)
+WHEN  : 71099.use
+QUEST : check_trans_ticket
+STATE : start
+WHEN  : login or
+WHEN  : levelup
+	with pc . level > 0
+STATE : zone_enter
+WHEN  : 20088.chat (gameforge.check_trans_ticket._10_npcChat)
+WHEN  : 20093.chat (gameforge.check_trans_ticket._50_npcChat)
+QUEST : christmas_santa
+STATE : start
+WHEN  : santa.click
+QUEST : christmas_tree
+STATE : start
+WHEN  : login
+	with game . get_event_flag ( "xmas_tree" ) == 0
+WHEN  : xmas_tree.click
+QUEST : make_herb_lv10
+STATE : start
+WHEN  : login or
+WHEN  : levelup
+	with pc . get_level ( ) == 10
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_herb_lv10._40_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 177.kill
+WHEN  : 20084.chat (gameforge.collect_herb_lv10._140_npcChat)
+	with pc . count_item ( 50703 ) > 0
+STATE : __complete
+QUEST : make_herb_lv15
+STATE : start
+WHEN  : login or
+WHEN  : levelup
+	with pc . get_level ( ) == 15
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_herb_lv15._20_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 181.kill
+WHEN  : 20084.chat (gameforge.collect_herb_lv15._100_npcChat)
+	with pc . count_item ( 50704 ) > 0
+STATE : __complete
+QUEST : make_herb_lv20
+STATE : start
+WHEN  : login or
+WHEN  : levelup
+	with pc . get_level ( ) == 20
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_herb_lv10._40_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 182.kill
+WHEN  : 20084.chat (gameforge.collect_herb_lv20._70_npcChat)
+	with pc . count_item ( 50705 ) > 0
+STATE : __complete
+QUEST : make_herb_lv25
+STATE : start
+WHEN  : login or
+WHEN  : levelup
+	with pc . get_level ( ) == 25
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_herb_lv10._40_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 183.kill
+WHEN  : 20084.chat (gameforge.collect_herb_lv25._80_npcChat)
+	with pc . count_item ( 50706 ) > 0
+STATE : __complete
+QUEST : make_herb_lv4
+STATE : start
+WHEN  : login or
+WHEN  : levelup
+	with pc . get_level ( ) == 4
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_herb_lv10._40_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 173.kill
+WHEN  : 20084.chat (gameforge.collect_herb_lv4._100_npcChat)
+	with pc . count_item ( 50701 ) > 0
+STATE : __complete
+QUEST : make_herb_lv7
+STATE : start
+WHEN  : login or
+WHEN  : levelup
+	with pc . get_level ( ) == 7
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_herb_lv10._40_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 175.kill
+WHEN  : 20084.chat (gameforge.collect_herb_lv7._80_npcChat)
+	with pc . count_item ( 50702 ) > 0
+STATE : __complete
+QUEST : collect_quest_lv30
+STATE : start
+WHEN  : login or
+WHEN  : levelup
+	with pc . level >= 30
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv30._30_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 601.kill
+WHEN  : 20084.chat (gameforge.collect_quest_lv30._140_npcChat)
+	with pc . count_item ( 30006 ) > 0
+STATE : key_item
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 631.kill or
+WHEN  : 632.kill or
+WHEN  : 633.kill or
+WHEN  : 634.kill or
+WHEN  : 635.kill or
+WHEN  : 636.kill or
+WHEN  : 637.kill
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv30._270_npcChat)
+	with pc . count_item ( 30220 ) > 0
+STATE : __reward
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20018.chat (gameforge.collect_quest_lv30._330_npcChat)
+STATE : __giveup__
+WHEN  : 20084.chat (gameforge.collect_quest_lv30._370_npcChat)
+STATE : __complete
+QUEST : collect_quest_lv40
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup
+	with pc . level >= 40
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv40._40_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 20084.chat (gameforge.collect_quest_lv40._140_npcChat)
+	with pc . count_item ( 30047 ) > 0
+STATE : key_item
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 731.kill or
+WHEN  : 732.kill or
+WHEN  : 733.kill or
+WHEN  : 734.kill or
+WHEN  : 735.kill or
+WHEN  : 736.kill or
+WHEN  : 737.kill or
+WHEN  : 701.kill or
+WHEN  : 702.kill or
+WHEN  : 703.kill or
+WHEN  : 704.kill or
+WHEN  : 705.kill or
+WHEN  : 706.kill or
+WHEN  : 707.kill
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv40._280_npcChat)
+	with pc . count_item ( 30221 ) > 0
+STATE : __reward
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20018.chat (gameforge.collect_quest_lv40._330_npcChat)
+STATE : __complete
+QUEST : collect_quest_lv50
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup
+	with pc . level >= 50
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv50._40_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 20084.chat (gameforge.collect_quest_lv50._150_npcChat)
+	with pc . count_item ( 30015 ) > 0
+STATE : key_item
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 1001.kill or
+WHEN  : 1002.kill or
+WHEN  : 1003.kill or
+WHEN  : 1004.kill
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv50._270_npcChat)
+	with pc . count_item ( 30222 ) > 0
+STATE : __reward
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20018.chat (gameforge.collect_quest_lv30._330_npcChat)
+STATE : __complete
+QUEST : collect_quest_lv60
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup
+	with pc . level >= 60
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv60._40_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 20084.chat (gameforge.collect_quest_lv60._160_npcChat)
+	with pc . count_item ( 30050 ) > 0
+STATE : key_item
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 1101.kill or
+WHEN  : 1102.kill or
+WHEN  : 1103.kill or
+WHEN  : 1104.kill or
+WHEN  : 1105.kill or
+WHEN  : 1106.kill or
+WHEN  : 1107.kill
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv60._290_npcChat)
+	with pc . count_item ( 30223 ) > 0
+STATE : __reward
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20018.chat (gameforge.collect_quest_lv60._330_npcChat)
+STATE : __giveup__
+STATE : __complete
+QUEST : collect_quest_lv70
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup
+	with pc . level >= 70
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv60._40_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 2301.kill or
+WHEN  : 2302.kill or
+WHEN  : 2303.kill or
+WHEN  : 2304.kill or
+WHEN  : 2305.kill or
+WHEN  : 2311.kill or
+WHEN  : 2312.kill or
+WHEN  : 2313.kill or
+WHEN  : 2314.kill or
+WHEN  : 2315.kill
+WHEN  : 20084.chat (gameforge.collect_quest_lv70._120_npcChat)
+	with pc . count_item ( 30165 ) > 0
+STATE : key_item
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 2301.kill or
+WHEN  : 2302.kill or
+WHEN  : 2303.kill or
+WHEN  : 2304.kill or
+WHEN  : 2305.kill or
+WHEN  : 2311.kill or
+WHEN  : 2312.kill or
+WHEN  : 2313.kill or
+WHEN  : 2314.kill or
+WHEN  : 2315.kill
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv70._240_npcChat)
+	with pc . count_item ( 30224 ) > 0
+STATE : __reward
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20018.chat (gameforge.collect_quest_lv30._330_npcChat)
+STATE : __complete
+QUEST : collect_quest_lv80
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup
+	with pc . level >= 80
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv60._40_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 1401.kill or
+WHEN  : 1402.kill or
+WHEN  : 1403.kill or
+WHEN  : 1601.kill or
+WHEN  : 1602.kill or
+WHEN  : 1603.kill
+WHEN  : 20084.chat (gameforge.collect_quest_lv80._140_npcChat)
+	with pc . count_item ( 30166 ) > 0
+STATE : key_item
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 1401.kill or
+WHEN  : 1402.kill or
+WHEN  : 1403.kill or
+WHEN  : 1601.kill or
+WHEN  : 1602.kill or
+WHEN  : 1603.kill
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv80._250_npcChat)
+	with pc . count_item ( 30225 ) > 0
+STATE : __reward
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20018.chat (gameforge.collect_quest_lv30._330_npcChat)
+STATE : __complete
+QUEST : collect_quest_lv85
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup
+	with pc . level >= 85
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv85._050_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 2311.kill or
+WHEN  : 2312.kill or
+WHEN  : 2313.kill or
+WHEN  : 2314.kill or
+WHEN  : 2315.kill
+WHEN  : 20084.chat (gameforge.collect_quest_lv85._140_npcChat)
+	with pc . count_item ( 30167 ) > 0
+STATE : key_item
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 2311.kill or
+WHEN  : 2312.kill or
+WHEN  : 2313.kill or
+WHEN  : 2314.kill or
+WHEN  : 2315.kill
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv85._255_npcChat)
+	with pc . count_item ( 30226 ) > 0
+STATE : __reward
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20018.chat (gameforge.collect_quest_lv85._310_npcChat)
+STATE : __complete
+QUEST : collect_quest_lv90
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup
+	with pc . level >= 90
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv90._050_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 691.kill or
+WHEN  : 792.kill or
+WHEN  : 791.kill or
+WHEN  : 1093.kill or
+WHEN  : 1304.kill or
+WHEN  : 2091.kill or
+WHEN  : 2191.kill or
+WHEN  : 2206.kill or
+WHEN  : 1901.kill
+WHEN  : 20084.chat (gameforge.collect_quest_lv90._140_npcChat)
+	with pc . count_item ( 30168 ) > 0
+STATE : key_item
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 1093.kill or
+WHEN  : 1304.kill or
+WHEN  : 1901.kill
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20084.chat (gameforge.collect_quest_lv90._260_npcChat)
+	with pc . count_item ( 30227 ) > 0
+STATE : __reward
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20018.chat (gameforge.collect_quest_lv90._310_npcChat)
+STATE : __complete
+QUEST : collect_quest_lv92
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup
+	with pc . level >= 92
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20091.chat (gameforge.collect_quest_lv92._040_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 1135.kill or
+WHEN  : 1137.kill
+WHEN  : 20091.chat (gameforge.collect_quest_lv92._145_npcChat)
+	with pc . count_item ( 30251 ) > 0
+STATE : __complete
+QUEST : collect_quest_lv94
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup
+	with pc . level >= 94
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20091.chat (gameforge.collect_quest_lv94._040_npcChat)
+STATE : go_to_disciple
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 71035.use
+WHEN  : 2414.kill or
+WHEN  : 2412.kill
+WHEN  : 20091.chat (gameforge.collect_quest_lv94._150_npcChat)
+	with pc . count_item ( 30252 ) > 0
+STATE : key_item
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 2493.kill
+WHEN  : 2495.kill
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20091.chat (gameforge.collect_quest_lv94._330_npcChat)
+	with pc . count_item ( 30228 ) > 0
+STATE : __complete
+QUEST : couple_ring
+STATE : start
+WHEN  : 9006.chat (gameforge.couple_ring._10_npcChat)
+	with pc . get_level ( ) >= 25
+STATE : kill
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : 394.kill
+FUNCTION get_rest_count()
+FUNCTION is_completed()
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 9006.chat (gameforge.couple_ring._10_npcChat)
+STATE : report
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 9006.chat (gameforge.couple_ring._220_npcChat)
+STATE : __COMPLETE__
+STATE : failure
+QUEST : cube
+STATE : start
+WHEN  : 20018.chat (gameforge.collect_herb_lv15._20_npcChat)
+	with pc . level >= 15
+WHEN  : 20017.chat (gameforge.collect_herb_lv15._20_npcChat)
+	with pc . level >= 30
+WHEN  : 20022.chat (gameforge.cube._30_npcChat)
+	with pc . level >= 45
+QUEST : deviltower_zone
+STATE : start
+WHEN  : login
+WHEN  : logout
+WHEN  : deviltower_man.chat (gameforge.deviltower_zone._10_npcChat)
+WHEN  : devil_stone1.kill
+WHEN  : devil_stone1_1.timer
+WHEN  : devil_stone3.kill
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000
+FUNCTION get_4floor_stone_pos()
+WHEN  : 8016.kill
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000
+WHEN  : devil_stone4_fail1.server_timer
+WHEN  : devil_stone4_fail2.server_timer
+WHEN  : devil_stone4_fail.server_timer
+WHEN  : devil_stone4_update.server_timer
+WHEN  : devil_stone4_stop_timer.server_timer
+WHEN  : devil_stone4_end.server_timer
+WHEN  : devil_stone5_fail1.server_timer
+WHEN  : devil_stone5_fail2.server_timer
+WHEN  : devil_stone5_fail3.server_timer
+WHEN  : devil_stone5_fail.server_timer
+WHEN  : 1062.kill
+	with pc . in_dungeon ( ) and d . getf ( "level" ) == 5
+WHEN  : devil_stone5.take
+	with item . vnum == 50084
+WHEN  : devil_stone6.kill
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000 and d . getf ( "level" ) == 6
+WHEN  : 20074.chat (gameforge.deviltower_zone._170_npcChat)
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000 and npc . lock ( )
+WHEN  : 20075.chat (gameforge.deviltower_zone._170_npcChat)
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000 and npc . lock ( )
+WHEN  : 20076.chat (gameforge.deviltower_zone._170_npcChat)
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000 and npc . lock ( )
+WHEN  : devil_jump_7.timer
+WHEN  : 8018.kill
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000
+WHEN  : 8019.kill
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000
+WHEN  : 30300.use
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000
+WHEN  : 30302.use
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000
+WHEN  : devil_jump_8.timer
+WHEN  : 1040.kill
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000
+WHEN  : 20366.take
+	with item . vnum == 30304
+WHEN  : devil_jump_9.timer
+WHEN  : 1093.kill
+	with pc . in_dungeon ( ) and pc . get_map_index ( ) >= 660000 and pc . get_map_index ( ) < 670000
+WHEN  : devil_end_jump.server_timer
+QUEST : find_brother_article
+STATE : start
+WHEN  : 20006.chat (gameforge.find_brother_article._10_npcChat)
+	with pc . get_level ( ) >= 23 and pc . get_level ( ) <= 26
+STATE : accept
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20006.chat (gameforge.find_brother_article._150_npcChat)
+	with pc . count_item ( 30032 ) == 0
+WHEN  : 20006.chat (gameforge.find_brother_article._240_npcChat)
+	with pc . count_item ( 30032 ) >= 1
+STATE : reward
+WHEN  : letter
+WHEN  : button
+STATE : repair
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : letter
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20016.chat (gameforge.find_brother_article._340_npcChat)
+STATE : __COMPLETE__
+STATE : __FAILURE__
+QUEST : find_senior_soldier
+STATE : start
+WHEN  : 20300.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20301.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20302.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20303.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20304.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20305.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20306.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20307.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20320.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20321.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20322.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20323.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20324.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20325.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20326.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20327.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20340.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20341.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20342.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20343.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20344.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20345.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20346.chat (gameforge.find_senior_soldier._10_npcChat) or
+WHEN  : 20347.chat (gameforge.find_senior_soldier._10_npcChat)
+	with pc_is_novice ( ) and npc_is_same_empire ( ) and npc_is_same_job ( ) and pc . get_level ( ) <= 10
+STATE : failure
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+STATE : find
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.die)
+WHEN  : target (__TARGET__.click)
+STATE : reward
+WHEN  : letter
+WHEN  : button
+STATE : __FUNC__
+FUNCTION clear_target_cond()
+FUNCTION save_target_cond()
+FUNCTION find_target()
+FUNCTION apply_affect(name,type,value)
+QUEST : find_squareguard
+STATE : start
+STATE : run
+WHEN  : login
+	with pc . level <= 5
+STATE : find
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__1.click)
+STATE : buy
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 11000.chat (gameforge.find_squareguard._100_npcChat) or
+WHEN  : 11002.chat (gameforge.find_squareguard._100_npcChat) or
+WHEN  : 11004.chat (gameforge.find_squareguard._100_npcChat)
+WHEN  : target (__TARGET__.click)
+STATE : deliver
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__1.click)
+	with pc . countitem ( "27001" ) < 1
+WHEN  : target (__TARGET__1.click)
+	with pc . countitem ( "27001" ) >= 1
+STATE : __COMPLETE__
+QUEST : fisher
+STATE : start
+WHEN  : 9009.chat (gameforge.fisher._10_npcChat)
+WHEN  : 9009.chat (gameforge.fisher._20_npcChat)
+WHEN  : 9009.take
+	with item . vnum < 27400 or item . vnum > 27590
+WHEN  : 9009.take
+	with item . vnum == 27590
+WHEN  : 9009.take
+	with item . vnum >= 27400 and item . vnum < 27590 and item . get_socket ( 0 ) ~= item . get_value ( 2 )
+WHEN  : 9009.take
+	with item . vnum >= 27400 and item . vnum < 27590 and item . get_socket ( 0 ) == item . get_value ( 2 )
+QUEST : forked_road
+STATE : start
+FUNCTION enter_level(vnum1,vnum2)
+WHEN  : login
+	with forked . isforkedmapindex ( pc . get_map_index ( ) ) == true
+WHEN  : 11001.chat (locale.forked_man_chat) or
+WHEN  : 11003.chat (locale.forked_man_chat) or
+WHEN  : 11005.chat (locale.forked_man_chat)
+WHEN  : 1306.kill or
+WHEN  : 1308.kill or
+WHEN  : 1309.kill or
+WHEN  : 1310.kill
+	with forked . isforkedmapindex ( pc . get_map_index ( ) ) == true
+WHEN  : 1902.kill or
+WHEN  : 1904.kill or
+WHEN  : 1905.kill or
+WHEN  : 1906.kill
+	with forked . issungzimapindex ( pc . get_map_index ( ) ) == true
+WHEN  : 20081.take
+	with item . vnum == 50089
+WHEN  : 11001.chat (gameforge.forked_road._110_npcChat) or
+WHEN  : 11003.chat (gameforge.forked_road._110_npcChat) or
+WHEN  : 11005.chat (gameforge.forked_road._110_npcChat)
+	with pc . get_gm_level ( ) == 5
+QUEST : fortune_telling
+STATE : start
+WHEN  : oldwoman.chat (gameforge.fortune_telling._10_npcChat)
+QUEST : game_option
+STATE : start
+WHEN  : login
+QUEST : give_basic_weapon
+STATE : start
+FUNCTION basic_item(job,index)
+WHEN  : login
+QUEST : goldbar_shop
+STATE : start
+WHEN  : 20020.chat (gameforge.goldbar._10_npcChat)
+STATE : trade_goldbar
+WHEN  : 20020.chat (gameforge.goldbar._140_npcChat)
+WHEN  : 20020.chat (gameforge.goldbar._240_npcChat)
+	with pc . is_gm ( )
+WHEN  : 20020.chat (gameforge.goldbar._260_npcChat)
+QUEST : goto_empire_castle
+STATE : start
+WHEN  : 20097.chat (gameforge.goto_empire_castle._10_npcChat)
+WHEN  : 20098.chat (gameforge.goto_empire_castle._80_npcChat)
+WHEN  : 20099.chat (gameforge.goto_empire_castle._10_npcChat)
+QUEST : alter_of_power
+STATE : start
+WHEN  : 20077.click
+	with npc . get_guild ( ) == pc . get_guild ( ) and pc . is_guild_master ( )
+WHEN  : 20078.click
+	with npc . get_guild ( ) == pc . get_guild ( ) and pc . is_guild_master ( )
+WHEN  : 20079.click
+	with npc . get_guild ( ) == pc . get_guild ( ) and pc . is_guild_master ( )
+WHEN  : 20077.click or
+WHEN  : 20078.click or
+WHEN  : 20079.click
+	with npc . get_guild ( ) == pc . get_guild ( ) and pc . is_guild_master ( ) ~= true
+QUEST : guild_building_melt
+STATE : start
+FUNCTION GetOreRefineCost(cost)
+FUNCTION GetOreRefineGoodPct()
+FUNCTION GetOreRefineBadPct()
+FUNCTION GetMyRefineNum(race)
+FUNCTION IsRefinableRawOre(vnum)
+FUNCTION DoRefineDiamond(pct)
+FUNCTION DoRefine(pct)
+WHEN  : 20060.take or
+WHEN  : 20061.take or
+WHEN  : 20062.take or
+WHEN  : 20063.take or
+WHEN  : 20064.take or
+WHEN  : 20065.take or
+WHEN  : 20066.take or
+WHEN  : 20067.take or
+WHEN  : 20068.take or
+WHEN  : 20069.take or
+WHEN  : 20070.take or
+WHEN  : 20071.take or
+WHEN  : 20072.take
+	with guild_building_melt . GetMyRefineNum ( npc . race ) == item . vnum
+WHEN  : 20060.take or
+WHEN  : 20061.take or
+WHEN  : 20062.take or
+WHEN  : 20063.take or
+WHEN  : 20064.take or
+WHEN  : 20065.take or
+WHEN  : 20066.take or
+WHEN  : 20067.take or
+WHEN  : 20068.take or
+WHEN  : 20069.take or
+WHEN  : 20070.take or
+WHEN  : 20071.take or
+WHEN  : 20072.take
+	with guild_building_melt . IsRefinableRawOre ( item . vnum ) and guild_building_melt . GetMyRefineNum ( npc . race ) ~= item . vnum
+WHEN  : 20060.click or
+WHEN  : 20061.click or
+WHEN  : 20062.click or
+WHEN  : 20063.click or
+WHEN  : 20064.click or
+WHEN  : 20065.click or
+WHEN  : 20066.click or
+WHEN  : 20067.click or
+WHEN  : 20068.click or
+WHEN  : 20069.click or
+WHEN  : 20070.click or
+WHEN  : 20071.click or
+WHEN  : 20072.click
+	with npc . get_guild ( ) == pc . get_guild ( ) and pc . isguildmaster ( )
+QUEST : guild_building_npc
+STATE : start
+WHEN  : 20044.click
+WHEN  : 20045.click
+WHEN  : 20046.click
+QUEST : guild_building
+STATE : start
+WHEN  : 20040.click
+QUEST : guild_create
+STATE : start
+STATE : run
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 691.party_kill
+STATE : reward
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+QUEST : guild_building
+STATE : start
+WHEN  : guild_man1.chat (gameforge.guild_manage._10_npcChat) or
+WHEN  : guild_man2.chat (gameforge.guild_manage._10_npcChat) or
+WHEN  : guild_man3.chat (gameforge.guild_manage._10_npcChat)
+	with pc . is_gm ( )
+WHEN  : guild_man1.chat (gameforge.guild_manage._100_npcChat) or
+WHEN  : guild_man2.chat (gameforge.guild_manage._100_npcChat) or
+WHEN  : guild_man3.chat (gameforge.guild_manage._100_npcChat)
+	with pc . is_gm ( )
+WHEN  : guild_man1.chat (gameforge.locale.guild.withdraw) or
+WHEN  : guild_man2.chat (gameforge.locale.guild.withdraw) or
+WHEN  : guild_man3.chat (gameforge.locale.guild.withdraw)
+	with pc . hasguild ( ) and not pc . isguildmaster ( ) and ( pc . is_gm ( ) or npc . empire == pc . empire )
+WHEN  : guild_man1.chat (gameforge.locale.guild.disband) or
+WHEN  : guild_man2.chat (gameforge.locale.guild.disband) or
+WHEN  : guild_man3.chat (gameforge.locale.guild.disband)
+	with pc . hasguild ( ) and pc . isguildmaster ( ) and ( pc . is_gm ( ) or npc . empire == pc . empire )
+WHEN  : guild_man1.chat (gameforge.guild_manage._160_npcChat) or
+WHEN  : guild_man2.chat (gameforge.guild_manage._170_npcChat) or
+WHEN  : guild_man3.chat (gameforge.guild_manage._170_npcChat)
+QUEST : guild_ranking
+STATE : start
+WHEN  : guild_man1.chat (gameforge.locale.show_guild_ranking_around) or
+WHEN  : guild_man2.chat (gameforge.locale.show_guild_ranking_around) or
+WHEN  : guild_man3.chat (gameforge.locale.show_guild_ranking_around)
+	with pc . hasguild ( )
+WHEN  : guild_man1.chat (gameforge.locale.show_guild_ranking_top) or
+WHEN  : guild_man2.chat (gameforge.locale.show_guild_ranking_top) or
+WHEN  : guild_man3.chat (gameforge.locale.show_guild_ranking_top)
+	with pc . hasguild ( )
+WHEN  : guild_man1.chat (gameforge.locale.show_guild_cur_score) or
+WHEN  : guild_man2.chat (gameforge.locale.show_guild_cur_score) or
+WHEN  : guild_man3.chat (gameforge.locale.show_guild_cur_score)
+	with pc . hasguild ( )
+QUEST : guild_war_bet
+STATE : start
+WHEN  : guild_war_observer1.chat (gameforge.guild_war_bet._10_npcChat) or
+WHEN  : guild_war_observer2.chat (gameforge.guild_war_bet._10_npcChat) or
+WHEN  : guild_war_observer3.chat (gameforge.guild_war_bet._10_npcChat)
+QUEST : guild_war_join
+STATE : start
+WHEN  : letter
+	with ( pc . get_map_index ( ) ~= 71 and pc . get_map_index ( ) ~= 104 and pc . get_map_index ( ) ~= 72 and pc . get_map_index ( ) ~= 73 and pc . get_map_index ( ) ~= 208 ) and pc . get_map_index ( ) <= 200
+WHEN  : button
+	with ( pc . get_map_index ( ) ~= 71 and pc . get_map_index ( ) ~= 104 and pc . get_map_index ( ) ~= 72 and pc . get_map_index ( ) ~= 73 and pc . get_map_index ( ) ~= 208 ) and pc . get_map_index ( ) <= 200
+QUEST : guild_war_observer
+STATE : start
+WHEN  : guild_war_observer1.chat (locale.guild.war_list_button)
+WHEN  : guild_war_observer2.chat (locale.guild.war_list_button)
+WHEN  : guild_war_observer3.chat (locale.guild.war_list_button)
+QUEST : hair
+STATE : start
+FUNCTION get_start_index_by_race(race)
+FUNCTION point_to_apply(applyOn)
+FUNCTION My_hair_item(vnum,index)
+FUNCTION leave_log(item_vnum)
+WHEN  : login
+WHEN  : 74001.use or
+WHEN  : 74002.use or
+WHEN  : 74003.use or
+WHEN  : 74004.use or
+WHEN  : 74005.use or
+WHEN  : 74006.use or
+WHEN  : 74007.use or
+WHEN  : 74008.use or
+WHEN  : 74009.use or
+WHEN  : 74010.use or
+WHEN  : 74011.use or
+WHEN  : 74012.use or
+WHEN  : 74013.use or
+WHEN  : 74014.use or
+WHEN  : 74015.use or
+WHEN  : 74016.use or
+WHEN  : 74017.use or
+WHEN  : 74018.use or
+WHEN  : 74019.use or
+WHEN  : 75001.use or
+WHEN  : 75002.use or
+WHEN  : 75003.use or
+WHEN  : 75004.use or
+WHEN  : 75005.use or
+WHEN  : 75006.use or
+WHEN  : 75007.use or
+WHEN  : 75008.use or
+WHEN  : 75009.use or
+WHEN  : 75010.use or
+WHEN  : 75011.use or
+WHEN  : 75012.use or
+WHEN  : 75013.use or
+WHEN  : 75014.use or
+WHEN  : 75015.use or
+WHEN  : 75016.use or
+WHEN  : 75017.use or
+WHEN  : 75018.use or
+WHEN  : 75019.use
+	with pc . get_job ( ) == 0
+WHEN  : 74251.use or
+WHEN  : 74252.use or
+WHEN  : 74253.use or
+WHEN  : 74254.use or
+WHEN  : 74255.use or
+WHEN  : 74256.use or
+WHEN  : 74257.use or
+WHEN  : 74258.use or
+WHEN  : 74259.use or
+WHEN  : 74260.use or
+WHEN  : 74261.use or
+WHEN  : 74262.use or
+WHEN  : 74263.use or
+WHEN  : 74264.use or
+WHEN  : 74265.use or
+WHEN  : 74266.use or
+WHEN  : 74267.use or
+WHEN  : 74268.use or
+WHEN  : 74269.use or
+WHEN  : 75201.use or
+WHEN  : 75202.use or
+WHEN  : 75203.use or
+WHEN  : 75204.use or
+WHEN  : 75205.use or
+WHEN  : 75206.use or
+WHEN  : 75207.use or
+WHEN  : 75208.use or
+WHEN  : 75209.use or
+WHEN  : 75210.use or
+WHEN  : 75211.use or
+WHEN  : 75212.use or
+WHEN  : 75213.use or
+WHEN  : 75214.use or
+WHEN  : 75215.use or
+WHEN  : 75216.use or
+WHEN  : 75217.use or
+WHEN  : 75218.use or
+WHEN  : 75219.use
+	with pc . get_job ( ) == 1
+WHEN  : 74501.use or
+WHEN  : 74502.use or
+WHEN  : 74503.use or
+WHEN  : 74504.use or
+WHEN  : 74505.use or
+WHEN  : 74506.use or
+WHEN  : 74507.use or
+WHEN  : 74508.use or
+WHEN  : 74509.use or
+WHEN  : 74510.use or
+WHEN  : 74511.use or
+WHEN  : 74512.use or
+WHEN  : 74513.use or
+WHEN  : 74514.use or
+WHEN  : 74515.use or
+WHEN  : 74516.use or
+WHEN  : 74517.use or
+WHEN  : 74518.use or
+WHEN  : 74519.use or
+WHEN  : 75401.use or
+WHEN  : 75402.use or
+WHEN  : 75403.use or
+WHEN  : 75404.use or
+WHEN  : 75405.use or
+WHEN  : 75406.use or
+WHEN  : 75407.use or
+WHEN  : 75408.use or
+WHEN  : 75409.use or
+WHEN  : 75410.use or
+WHEN  : 75411.use or
+WHEN  : 75412.use or
+WHEN  : 75413.use or
+WHEN  : 75414.use or
+WHEN  : 75415.use or
+WHEN  : 75416.use or
+WHEN  : 75417.use or
+WHEN  : 75418.use or
+WHEN  : 75419.use
+	with pc . get_job ( ) == 2
+WHEN  : 74751.use or
+WHEN  : 74752.use or
+WHEN  : 74753.use or
+WHEN  : 74754.use or
+WHEN  : 74755.use or
+WHEN  : 74756.use or
+WHEN  : 74757.use or
+WHEN  : 74758.use or
+WHEN  : 74759.use or
+WHEN  : 74760.use or
+WHEN  : 74761.use or
+WHEN  : 74762.use or
+WHEN  : 74763.use or
+WHEN  : 74764.use or
+WHEN  : 74765.use or
+WHEN  : 74766.use or
+WHEN  : 74767.use or
+WHEN  : 74768.use or
+WHEN  : 74769.use or
+WHEN  : 75601.use or
+WHEN  : 75602.use or
+WHEN  : 75603.use or
+WHEN  : 75604.use or
+WHEN  : 75605.use or
+WHEN  : 75606.use or
+WHEN  : 75607.use or
+WHEN  : 75608.use or
+WHEN  : 75609.use or
+WHEN  : 75610.use or
+WHEN  : 75611.use or
+WHEN  : 75612.use or
+WHEN  : 75613.use or
+WHEN  : 75614.use or
+WHEN  : 75615.use or
+WHEN  : 75616.use or
+WHEN  : 75617.use or
+WHEN  : 75618.use or
+WHEN  : 75619.use
+	with pc . get_job ( ) == 3
+WHEN  : 20355.chat (gameforge.hair._010_npcChat)
+	with is_test_server ( )
+WHEN  : 20355.chat (gameforge.hair._030_npcChat)
+	with pc . get_part ( 3 ) >= 1000 and pc . getqf ( "original_vnum" ) == 0 and nil == pc . get_wear ( 20 )
+QUEST : hair_shop
+STATE : start
+WHEN  : 20021.chat (gameforge.hair_shop._10_npcChat)
+	with pc . get_part ( PART_HAIR ) >= 1001
+QUEST : horse_exchange_ticket
+STATE : start
+WHEN  : 20349.chat (gameforge.horse_exchange_ticket._10_npcChat)
+	with pc . countitem ( "50005" ) >= 1
+STATE : __COMPLETE__
+WHEN  : enter
+QUEST : horse_guard
+STATE : start
+WHEN  : 20349.chat (gameforge.horse_guard._10_npcChat)
+STATE : __COMPLETE__
+WHEN  : enter
+QUEST : horse_levelup
+STATE : training1
+WHEN  : letter
+WHEN  : 492.kill
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 492.kill
+	with pc . getqf ( "kill_count" ) >= 5
+WHEN  : unmount
+STATE : training2
+WHEN  : letter
+WHEN  : 494.kill
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 494.kill
+	with pc . getqf ( "kill_count" ) >= 5
+WHEN  : unmount
+STATE : training3
+WHEN  : letter
+WHEN  : 635.kill
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 635.kill
+	with pc . getqf ( "kill_count" ) >= 10
+WHEN  : unmount
+STATE : training4
+WHEN  : letter
+WHEN  : 636.kill
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 636.kill
+	with pc . getqf ( "kill_count" ) >= 10
+WHEN  : unmount
+STATE : training5
+WHEN  : letter
+WHEN  : 706.kill
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 706.kill
+	with pc . getqf ( "kill_count" ) >= 10
+WHEN  : unmount
+STATE : training6
+WHEN  : letter
+WHEN  : 2034.kill
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 2034.kill
+	with pc . getqf ( "kill_count" ) >= 10
+WHEN  : unmount
+STATE : training7
+WHEN  : letter
+WHEN  : 2108.kill
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 2108.kill
+	with pc . getqf ( "kill_count" ) >= 20
+WHEN  : unmount
+STATE : training8
+WHEN  : letter
+WHEN  : 1107.kill
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 1107.kill
+	with pc . getqf ( "kill_count" ) >= 10
+WHEN  : unmount
+STATE : training9
+WHEN  : letter
+WHEN  : 2203.kill
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 2203.kill
+	with pc . getqf ( "kill_count" ) >= 20
+WHEN  : unmount
+STATE : start
+WHEN  : 20349.chat (gameforge.horse_levelup._230_npcChat)
+	with horse . get_grade ( ) == 2
+STATE : need_item50050
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . countitem ( "50050" ) >= 1
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+STATE : failure
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter or
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+STATE : report
+WHEN  : letter
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : reward
+WHEN  : letter
+WHEN  : button
+STATE : __COMPLETE__
+WHEN  : enter
+QUEST : horse_menu
+STATE : start
+FUNCTION horse_menu()
+WHEN  : 20030.click
+WHEN  : 20101.click
+WHEN  : 20102.click
+WHEN  : 20103.click
+WHEN  : 20104.click
+WHEN  : 20105.click
+WHEN  : 20106.click
+WHEN  : 20107.click
+WHEN  : 20108.click
+WHEN  : 20109.click
+WHEN  : 20119.click
+WHEN  : 20120.click
+WHEN  : 20121.click
+WHEN  : 20122.click
+QUEST : horse_revive
+STATE : start
+WHEN  : 20349.chat (gameforge.horse_revive._10_npcChat)
+	with horse . get_grade ( ) == 3 and horse . is_dead ( ) and pc . countitem ( "50059" ) < 1
+WHEN  : 20349.chat (gameforge.horse_revive._10_npcChat)
+	with horse . get_grade ( ) == 3 and horse . is_dead ( ) and pc . countitem ( "50059" ) >= 1
+WHEN  : 20349.chat (gameforge.horse_revive._10_npcChat)
+	with horse . get_grade ( ) == 2 and horse . is_dead ( ) and pc . countitem ( "50058" ) < 1
+WHEN  : 20349.chat (gameforge.horse_revive._100_npcChat)
+	with horse . get_grade ( ) == 2 and horse . is_dead ( ) and pc . countitem ( "50058" ) >= 1
+WHEN  : 20349.chat (gameforge.horse_revive._100_npcChat)
+	with horse . get_grade ( ) == 1 and horse . is_dead ( ) and pc . countitem ( "50057" ) < 1
+WHEN  : 20349.chat (gameforge.horse_revive._10_npcChat)
+	with horse . get_grade ( ) == 1 and horse . is_dead ( ) and pc . countitem ( "50057" ) >= 1
+STATE : __COMPLETE__
+WHEN  : enter
+QUEST : horse_ride
+STATE : start
+WHEN  : 20349.chat (gameforge.horse_ride._10_npcChat)
+	with pc . level >= 10 and not pc . is_mount ( )
+QUEST : horse_summon
+STATE : start
+FUNCTION get_horse_summon_prob_pct()
+WHEN  : 20349.chat (gameforge.horse_summon._10_npcChat)
+	with horse . get_grade ( ) == 1 and pc . countitem ( "50051" ) < 1
+WHEN  : 20349.chat (gameforge.horse_summon._50_npcChat)
+	with horse . get_grade ( ) == 2 and pc . countitem ( "50052" ) < 1
+WHEN  : 20349.chat (gameforge.horse_summon._90_npcChat)
+	with horse . get_grade ( ) == 3 and pc . countitem ( "50053" ) < 1
+WHEN  : 50051.use
+	with horse . get_grade ( ) == 0
+WHEN  : 50051.use
+	with horse . get_grade ( ) == 1
+WHEN  : 50051.use
+	with horse . get_grade ( ) == 2
+WHEN  : 50051.use
+	with horse . get_grade ( ) == 3
+WHEN  : 50052.use
+	with horse . get_grade ( ) == 0
+WHEN  : 50052.use
+	with horse . get_grade ( ) == 1
+WHEN  : 50052.use
+	with horse . get_grade ( ) == 2
+WHEN  : 50052.use
+	with horse . get_grade ( ) == 3
+WHEN  : 50053.use
+	with horse . get_grade ( ) == 0
+WHEN  : 50053.use
+	with horse . get_grade ( ) == 1
+WHEN  : 50053.use
+	with horse . get_grade ( ) == 2
+WHEN  : 50053.use
+	with horse . get_grade ( ) == 3
+STATE : __COMPLETE__
+WHEN  : enter
+QUEST : horse_upgrade2
+STATE : start
+WHEN  : 20349.chat (gameforge.horse_upgrade2._10_npcChat)
+	with horse . get_grade ( ) == 2 and horse . get_level ( ) == 20
+STATE : need_item50050
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . countitem ( "50050" ) >= 1
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 20349.chat (gameforge.horse_upgrade2._10_npcChat)
+	with horse . get_grade ( ) == 2 and horse . get_level ( ) == 20
+STATE : test
+WHEN  : letter
+WHEN  : 1002.party_kill
+WHEN  : letter
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 1002.party_kill
+	with pc . getqf ( "kill_count" ) >= 300 and pc . getqf ( "limit_time" ) >= get_time ( )
+WHEN  : 20349.chat (gameforge.horse_upgrade2._150_npcChat)
+STATE : report
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 20349.chat (gameforge.horse_upgrade2._250_npcChat)
+	with horse . get_grade ( ) ~= 2
+WHEN  : 20349.chat (gameforge.horse_upgrade2._260_npcChat)
+	with horse . get_grade ( ) == 2
+STATE : wait
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : login
+	with get_time ( ) >= pc . getqf ( "make_time" )
+WHEN  : 20349.chat (gameforge.horse_upgrade2._300_npcChat)
+	with horse . get_grade ( ) ~= 2
+WHEN  : 20349.chat (gameforge.horse_upgrade2._310_npcChat)
+	with horse . get_grade ( ) == 2
+STATE : buy
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 20349.chat (gameforge.horse_upgrade2._300_npcChat)
+	with horse . get_grade ( ) ~= 2
+WHEN  : 20349.chat (gameforge.horse_upgrade2._300_npcChat)
+	with horse . get_grade ( ) == 2 and horse . get_level ( ) ~= 20
+WHEN  : 20349.chat (gameforge.horse_upgrade2._350_npcChat)
+	with horse . get_grade ( ) == 2 and horse . get_level ( ) == 20
+STATE : failure
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+STATE : __COMPLETE__
+WHEN  : enter
+QUEST : horse_upgrade
+STATE : start
+WHEN  : 20349.chat (gameforge.horse_upgrade2._10_npcChat)
+	with horse . get_grade ( ) == 1 and horse . get_level ( ) == 10
+STATE : need_item50050
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . countitem ( "50050" ) >= 1
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 20349.chat (gameforge.horse_upgrade2._10_npcChat)
+	with horse . get_grade ( ) == 1 and horse . get_level ( ) == 10
+STATE : test
+WHEN  : letter
+WHEN  : 2105.party_kill
+WHEN  : 2107.party_kill
+WHEN  : letter
+WHEN  : enter
+WHEN  : leave
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 2105.party_kill
+	with pc . getqf ( "kill_count" ) >= 100 and pc . getqf ( "kill_count" ) >= 100 and pc . getqf ( "limit_time" ) >= get_time ( )
+WHEN  : 2107.party_kill
+	with pc . getqf ( "kill_count" ) >= 100 and pc . getqf ( "kill_count" ) >= 100 and pc . getqf ( "limit_time" ) >= get_time ( )
+WHEN  : 20349.chat (gameforge.horse_upgrade._120_npcChat)
+STATE : report
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 20349.chat (gameforge.horse_upgrade._150_npcChat)
+	with horse . get_grade ( ) ~= 1
+WHEN  : 20349.chat (gameforge.horse_upgrade._160_npcChat)
+	with horse . get_grade ( ) == 1
+STATE : wait
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : login
+	with get_time ( ) >= pc . getqf ( "make_time" )
+WHEN  : 20349.chat (gameforge.horse_upgrade2._300_npcChat)
+	with horse . get_grade ( ) ~= 1
+WHEN  : 20349.chat (gameforge.horse_upgrade._200_npcChat)
+	with horse . get_grade ( ) == 1
+STATE : buy
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 20349.chat (gameforge.horse_upgrade2._300_npcChat)
+	with horse . get_grade ( ) ~= 1
+WHEN  : 20349.chat (gameforge.horse_upgrade2._300_npcChat)
+	with horse . get_grade ( ) == 1 and horse . get_level ( ) ~= 10
+WHEN  : 20349.chat (gameforge.horse_upgrade._240_npcChat)
+	with horse . get_grade ( ) == 1 and horse . get_level ( ) == 10
+STATE : failure
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+STATE : __COMPLETE__
+WHEN  : enter
+QUEST : item_change_sex
+STATE : start
+WHEN  : 71048.use
+QUEST : item_mall
+STATE : start
+WHEN  : 9010.chat (gameforge.item_mall._10_npcChat)
+	with is_test_server ( )
+QUEST : levelup
+STATE : run
+WHEN  : letter
+STATE : start
+WHEN  : info
+WHEN  : login
+WHEN  : button
+WHEN  : levelup
+WHEN  : kill
+FUNCTION show_mob_pos(lev)
+QUEST : main_quest_lv10
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 10
+STATE : gotoboss
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : gotomusition
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : gotoboss2
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+QUEST : main_quest_lv12
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 12
+STATE : gotoboss
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : killgraydog
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 107.kill
+WHEN  : 20355.chat (gameforge.main_quest_lv12._80_npcChat)
+	with pc . getqf ( "state" ) < 10
+WHEN  : 20355.chat (gameforge.main_quest_lv12._80_npcChat)
+	with pc . getqf ( "state" ) >= 10
+STATE : gotoboss2
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+QUEST : main_quest_lv14
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 14
+STATE : gotoboss
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : killmetinstone
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 8003.kill
+STATE : gotoboss2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+QUEST : main_quest_lv15
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+STATE : gotoboss
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : gotomusition
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : gotoboss2
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+WHEN  : enter
+QUEST : main_quest_lv16
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 16
+STATE : gotoboss
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : killrobber
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 394.kill or
+WHEN  : 393.kill or
+WHEN  : 392.kill or
+WHEN  : 391.kill or
+WHEN  : 301.kill or
+WHEN  : 302.kill or
+WHEN  : 303.kill or
+WHEN  : 304.kill
+STATE : gotoboss2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+QUEST : main_quest_lv1
+STATE : start
+WHEN  : login or
+WHEN  : levelup
+	with pc . get_level ( ) == 1
+STATE : gotoinfomation
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+STATE : gototeacher
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+QUEST : main_quest_lv27
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+STATE : gotoboss
+WHEN  : letter
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : killmetinstone
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : 8005.kill
+STATE : gotoboss2
+WHEN  : letter
+WHEN  : letter
+WHEN  : button
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+QUEST : main_quest_lv2
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 2
+WHEN  : 20354.chat (gameforge.main_quest_lv2._10_npcChat)
+	with pc . get_level ( ) < 2
+STATE : gototeacher
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : killdog
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 101.kill
+WHEN  : 20354.chat (gameforge.main_quest_lv2._160_npcChat)
+	with pc . getqf ( "state" ) < 9
+WHEN  : 20354.chat (gameforge.main_quest_lv2._160_npcChat)
+	with pc . getqf ( "state" ) >= 9
+STATE : gototeacher2
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+QUEST : main_quest_lv30
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+STATE : gotoeUriel
+WHEN  : letter
+WHEN  : letter
+WHEN  : info or
+WHEN  : button
+WHEN  : target (__TARGET__.click)
+STATE : clickstone
+WHEN  : letter
+WHEN  : letter
+WHEN  : info or
+WHEN  : button
+WHEN  : target (__TARGET1__.click)
+STATE : gotoeUriel2
+WHEN  : letter
+WHEN  : letter
+WHEN  : info or
+WHEN  : button
+WHEN  : target (__TARGET__.click)
+STATE : clickplace
+WHEN  : letter
+WHEN  : letter
+WHEN  : info or
+WHEN  : button
+WHEN  : target (__TARGET2__.click)
+STATE : gotoeUriel3
+WHEN  : letter
+WHEN  : letter
+WHEN  : info or
+WHEN  : button
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+WHEN  : enter
+QUEST : main_quest_lv32
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 32
+STATE : gototeacher
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv32._10_sendLetter)
+STATE : gomerchant
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20010.chat (gameforge.main_quest_lv32._110_npcChat)
+STATE : gotorequest
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20010.chat (gameforge.main_quest_lv32._200_npcChat)
+STATE : gotodoc
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20357.chat (gameforge.main_quest_lv32._280_npcChat)
+STATE : gototeacher2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv32._300_sendLetter)
+STATE : gotohunter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20019.chat (gameforge.main_quest_lv32._500_npcChat)
+STATE : godoc2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 634.kill
+STATE : goteacher3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv32._560_sendLetter)
+STATE : godoc3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+STATE : __COMPLETE__
+QUEST : main_quest_lv3
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 3
+WHEN  : 20354.chat (gameforge.main_quest_lv3._10_npcChat)
+STATE : gototeacher
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : gotogood
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : gotodefend
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+QUEST : main_quest_lv40
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 40
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 731.kill
+STATE : gototeacher
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv32._670_sendLetter)
+STATE : godoc4
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET1__.click) or
+WHEN  : 20360.chat (gameforge.main_quest_lv40._150_targetVid)
+WHEN  : target (__TARGET2__.click) or
+WHEN  : 20361.chat (gameforge.main_quest_lv40._200_npcChat)
+STATE : gototeacher2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv40._260_npcChat)
+STATE : goboss
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20355.chat (gameforge.main_quest_lv40._400_npcChat)
+STATE : survey
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20364.chat (gameforge.main_quest_lv40._450_npcChat)
+STATE : survey2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 591.kill
+STATE : _end_
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+STATE : __COMPLETE__
+QUEST : main_quest_lv47
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup
+	with pc . get_level ( ) >= 47
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv47._30_npcChat)
+STATE : survey
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20362.chat (gameforge.main_quest_lv47._120_npcChat)
+STATE : gototeacher2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv47._160_npcChat)
+STATE : gotomusician
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20017.chat (gameforge.main_quest_lv47._270_npcChat)
+STATE : his_advice
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 2108.kill
+STATE : gotomusician1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : gototeacher
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : survey2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 2106.kill or
+WHEN  : 2107.kill
+STATE : gototeacher3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv47._520_sendLetter)
+STATE : __COMPLETE__
+QUEST : main_quest_lv50
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 50
+STATE : information
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 2036.kill
+STATE : gototeacher5
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv50._30_sendLetter)
+STATE : survey6
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET1__.click) or
+WHEN  : 20359.chat (gameforge.main_quest_lv50._180_npcChat)
+STATE : gototeacher6
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv50._200_sendLetter)
+STATE : survey7
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 2034.kill
+STATE : gototeacher7
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv50._320_sendLetter)
+STATE : __COMPLETE__
+QUEST : main_quest_lv55
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup
+	with pc . get_level ( ) >= 55
+STATE : survey8
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+FUNCTION is_other_vil()
+WHEN  : target (__TARGET1__.click) or
+WHEN  : 20357.chat (gameforge.main_quest_lv55._50_npcChat)
+	with main_quest_lv55 . is_other_vil ( ) == 1
+STATE : gototeacher8
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+FUNCTION is_my_vil()
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv55._70_sendLetter)
+	with main_quest_lv55 . is_my_vil ( ) == 1
+STATE : last_shot
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 1303.kill
+STATE : takepaper
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET1__.click) or
+WHEN  : 20363.chat (gameforge.main_quest_lv55._280_npcChat)
+STATE : gototeacher
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click) or
+WHEN  : 20011.chat (gameforge.main_quest_lv55._200_sendLetter)
+STATE : __COMPLETE__
+QUEST : main_quest_lv6
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 6
+STATE : gototeacher
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : gotosmith
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : gotowarehousekeeper
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : gotosmith2
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+QUEST : main_quest_lv7
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 7
+STATE : gotosmith
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : gotofisher
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20016.chat (gameforge.main_quest_lv7._90_npcChat)
+WHEN  : 9009.chat (gameforge.main_quest_lv7._110_npcChat)
+STATE : gotosmith2
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : refine
+WHEN  : login
+	with pc . getqf ( "refine_chance" ) == 0
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+STATE : __COMPLETE__
+QUEST : main_quest_lv9
+STATE : start
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 9
+STATE : gototeacher
+WHEN  : letter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+QUEST : main_quest_lv78
+STATE : start
+STATE : state_0
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . level >= 78
+STATE : state_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv78._10_sendLetter)
+STATE : make_red_bead
+WHEN  : enter
+WHEN  : 2205.kill or
+WHEN  : 2204.kill or
+WHEN  : 2203.kill
+WHEN  : 20369.chat (gameforge.main_quest_lv78._10_sendLetter)
+STATE : state_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv78._110_sendLetter)
+	with pc . count_item ( 31004 ) < 100
+WHEN  : 2315.kill or
+WHEN  : 2314.kill
+WHEN  : 20369.chat (gameforge.main_quest_lv78._110_sendLetter)
+	with pc . count_item ( 31004 ) >= 100
+STATE : state_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20018.chat (gameforge.main_quest_lv78._210_sendLetter)
+STATE : __COMPLETE__
+QUEST : main_quest_lv72
+STATE : start
+STATE : state_0
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . level >= 72
+STATE : state_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv72._10_sendLetter)
+STATE : state_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20372.click
+STATE : report_discovery
+WHEN  : 20369.chat (gameforge.main_quest_lv72._60_sendLetter)
+STATE : state_4
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv72._180_sendLetter)
+STATE : state_5
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 1105.kill or
+WHEN  : 1106.kill or
+WHEN  : 1107.kill
+WHEN  : 20369.chat (gameforge.main_quest_lv72._180_sendLetter)
+	with pc . count_item ( 31005 ) > 0
+STATE : __COMPLETE__
+QUEST : main_quest_lv60
+STATE : start
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 60
+STATE : run
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . get_level ( ) >= 60
+STATE : quest1_begin
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : quest2_begin
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : quest2_ongoing
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20011.gameforge (main_quest_lv60._60_sendLetter)
+WHEN  : 20371.click
+STATE : quest2_end
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : quest3_begin
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : quest3_ongoing1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20011.chat (gameforge.main_quest_lv60._220_sendLetter)
+WHEN  : 2305.kill
+STATE : quest3_end1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : quest3_ongoing2
+WHEN  : enter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 2305.kill
+STATE : quest3_end2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : quest4_begin
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.click)
+STATE : __COMPLETE__
+WHEN  : enter
+QUEST : main_quest_lv66
+STATE : start
+STATE : state_0
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . level >= 66
+STATE : state_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20011.chat (gameforge.main_quest_lv66._10_sendLetter)
+WHEN  : 1091.kill
+STATE : state_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20011.chat (gameforge.main_quest_lv66._10_sendLetter)
+STATE : state_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20011.chat (gameforge.main_quest_lv66._60_sendLetter)
+STATE : state_4
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 11000.chat (gameforge.main_quest_lv66._130_sendLetter) or
+WHEN  : 11002.chat (gameforge.main_quest_lv66._130_sendLetter) or
+WHEN  : 11004.chat (gameforge.main_quest_lv66._130_sendLetter)
+STATE : state_5
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv66._170_sendLetter)
+STATE : state_6
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv66._210_sendLetter)
+STATE : state_7
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv66._320_sendLetter)
+STATE : state_8
+WHEN  : enter
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 2313.kill
+WHEN  : rgd_kill_timer.timer
+STATE : state_9
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv66._390_sendLetter)
+STATE : state_10
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20370.chat (gameforge.main_quest_lv66._480_sendLetter)
+STATE : state_11
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv66._560_sendLetter)
+STATE : __COMPLETE__
+QUEST : main_quest_lv84
+STATE : start
+STATE : state_0
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . level >= 84
+STATE : state_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv84._10_sendLetter)
+STATE : state_4
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 31008.use
+	with pc . get_map_index ( ) >= 2.16e+06 and pc . get_map_index ( ) < 2.17e+06
+WHEN  : 2591.kill
+STATE : state_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv84._90_sendLetter)
+WHEN  : 2597.kill
+STATE : state_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv84._150_sendLetter)
+STATE : __COMPLETE__
+fucking
+5 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+8 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+9 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+12 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+16 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+17 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+26 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+29 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+35 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+37 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+38 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+44 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+45 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+46 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+47 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+60 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+61 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+62 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+63 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+67 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+68 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+69 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+75 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+76 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+77 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+78 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+79 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+80 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+81 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+82 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+83 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+87 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+88 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+89 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+90 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+91 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+92 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+98 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+99 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+100 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+101 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+102 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+103 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+107 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+109 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+111 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+113 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+115 Invalid syntax
+define [name] = [valueQUEST : main_quest_lv90
+STATE : start
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . level >= 90
+STATE : state0
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . level >= 90
+STATE : state01_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20369.chat (gameforge.main_quest_lv90._010_sendLetter5)
+STATE : state01_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : login or
+WHEN  : enter
+	with pc . get_map_index ( ) == 301
+STATE : state1_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._010_sendLetter)
+STATE : state1_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.arrive)
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._010_sendLetter)
+STATE : state1_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.arrive)
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._010_sendLetter)
+STATE : state1_5
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : target (__TARGET__.arrive)
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._010_sendLetter)
+STATE : state1_6
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._010_sendLetter)
+STATE : state2_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._260_sendLetter)
+STATE : state2_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._260_sendLetter)
+WHEN  : 3001.kill or
+WHEN  : 3002.kill or
+WHEN  : 3003.kill or
+WHEN  : 3004.kill or
+WHEN  : 3005.kill or
+WHEN  : 3090.kill or
+WHEN  : 3091.kill
+STATE : state2_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 3001.kill or
+WHEN  : 3002.kill or
+WHEN  : 3003.kill or
+WHEN  : 3004.kill or
+WHEN  : 3005.kill or
+WHEN  : 3090.kill or
+WHEN  : 3091.kill
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._260_sendLetter)
+STATE : state3_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._430_sendLetter)
+STATE : state3_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._430_sendLetter)
+WHEN  : MOB3_1.kill
+STATE : state3_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : MOB3_1.kill
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._430_sendLetter)
+STATE : state4_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._560_sendLetter)
+STATE : state4_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._560_sendLetter)
+WHEN  : MOB4_1.kill
+STATE : state4_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : MOB4_1.kill
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._560_sendLetter)
+STATE : state5_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._690_sendLetter)
+STATE : state5_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._690_sendLetter)
+FUNCTION kill_count()
+WHEN  : MOB5_1.kill
+WHEN  : MOB5_2.kill
+WHEN  : MOB5_3.kill
+WHEN  : MOB5_4.kill
+STATE : state5_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._690_sendLetter)
+STATE : state6_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._010_sendLetter1)
+STATE : state6_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._010_sendLetter1)
+WHEN  : 3001.kill or
+WHEN  : 3002.kill or
+WHEN  : 3003.kill or
+WHEN  : 3004.kill or
+WHEN  : 3005.kill or
+WHEN  : 3090.kill or
+WHEN  : 3091.kill
+STATE : state6_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 3001.kill or
+WHEN  : 3002.kill or
+WHEN  : 3003.kill or
+WHEN  : 3004.kill or
+WHEN  : 3005.kill or
+WHEN  : 3090.kill or
+WHEN  : 3091.kill
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._010_sendLetter1)
+STATE : state7_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._010_sendLetter3)
+STATE : state7_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._010_sendLetter3)
+WHEN  : 3201.kill or
+WHEN  : 3202.kill or
+WHEN  : 3203.kill or
+WHEN  : 3204.kill or
+WHEN  : 3205.kill or
+WHEN  : 3290.kill or
+WHEN  : 3291.kill
+STATE : state7_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 3201.kill or
+WHEN  : 3202.kill or
+WHEN  : 3203.kill or
+WHEN  : 3204.kill or
+WHEN  : 3205.kill or
+WHEN  : 3290.kill or
+WHEN  : 3291.kill
+WHEN  : GUARD.chat (gameforge.main_quest_lv90._010_sendLetter3)
+STATE : __COMPLETE__
+WHEN  : enter
+]
+define group [name] = "["[v0],[v1], ... "]"
+116 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+122 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+123 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+124 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+125 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+129 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+130 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+131 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+139 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+140 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+146 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+147 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+148 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+149 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+150 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+151 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+155 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+156 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+157 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+165 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+166 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+172 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+173 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+174 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+175 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+176 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+177 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+5 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+8 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+12 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+18 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+19 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+25 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+26 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+27 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+28 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+29 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+30 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+34 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+35 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+37 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+38 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+44 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+45 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+46 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+47 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+48 Invalid syntax
+define [name] = [value]
+define group [name] = "["[vQUEST : main_quest_lv91
+STATE : start
+STATE : state0
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . level >= 91
+STATE : state1_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv91._010_sendLetter)
+STATE : state1_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 3205.kill
+STATE : state1_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv91._010_sendLetter)
+STATE : state2_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv91._160_sendLetter)
+STATE : state2_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv91._160_sendLetter)
+WHEN  : 3291.kill
+STATE : state2_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 3291.kill
+WHEN  : GUARD.chat (gameforge.main_quest_lv91._160_sendLetter)
+STATE : state3_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv91._270_sendLetter)
+STATE : state3_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv91._270_sendLetter)
+	with pc . count_item ( ITEM3_1 ) > 0
+WHEN  : 3601.kill or
+WHEN  : 3602.kill or
+WHEN  : 3603.kill or
+WHEN  : 3604.kill or
+WHEN  : 3605.kill
+STATE : state4_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv91._420_sendLetter)
+STATE : state4_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv91._420_sendLetter)
+	with pc . count_item ( ITEM4_1 ) > 0
+WHEN  : MOB4_1.kill or
+WHEN  : MOB4_2.kill
+STATE : state5_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv91._560_sendLetter)
+STATE : state5_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20382.click
+WHEN  : 20380.chat (gameforge.main_quest_lv91._560_sendLetter)
+	with pc . count_item ( ITEM5_1 ) >= 1
+STATE : state5_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20382.click
+WHEN  : 20380.chat (gameforge.main_quest_lv91._560_sendLetter)
+	with pc . count_item ( ITEM5_1 ) >= 1
+STATE : __COMPLETE__
+WHEN  : enter
+0],[v1], ... "]"
+49 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+58 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+59 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+65 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+66 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+67 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+68 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+70 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+71 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+72 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+73 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+77 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+78 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+79 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+80 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+86 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+87 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+88 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+89 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+90 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+92 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+93 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+98 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+100 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+101 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+107 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+108 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+109 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+5 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+8 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+12 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+16 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+17 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+18 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+19 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+25 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+26 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+27 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+28 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+29 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+30 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+31 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+35 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+36 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+37 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+43 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+44 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+45 Invalid syntax
+define [name] = QUEST : main_quest_lv92
+STATE : start
+STATE : state0
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . level >= 92
+STATE : state1_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv92._010_sendLetter)
+STATE : state1_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv92._010_sendLetter)
+WHEN  : MOB1_1.kill or
+WHEN  : MOB1_2.kill
+STATE : state1_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : MOB1_1.kill or
+WHEN  : MOB1_2.kill
+WHEN  : GUARD.chat (gameforge.main_quest_lv92._010_sendLetter)
+STATE : state2_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv92._170_sendLetter)
+STATE : state2_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv92._170_sendLetter)
+WHEN  : UNDERLING.chat (gameforge.main_quest_lv92._170_sendLetter)
+STATE : state2_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv92._170_sendLetter)
+STATE : state3_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv92._370_sendLetter)
+STATE : state3_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv92._370_sendLetter)
+STATE : state3_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv92._370_sendLetter)
+WHEN  : MOB3_1.kill or
+WHEN  : MOB3_2.kill
+STATE : state3_4
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : MOB3_1.kill or
+WHEN  : MOB3_2.kill
+WHEN  : 20380.chat (gameforge.main_quest_lv92._370_sendLetter)
+STATE : state4_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv92._560_sendLetter)
+STATE : __COMPLETE__
+WHEN  : enter
+[value]
+define group [name] = "["[v0],[v1], ... "]"
+46 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+50 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+51 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+52 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+53 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+59 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+60 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+61 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+62 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+63 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+64 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+65 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+69 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+70 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+71 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+72 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+5 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+8 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+12 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+16 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+17 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+18 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+24 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+25 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+26 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+27 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+28 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+29 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+33 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+34 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+35 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+41 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+42 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+43 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+44 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+45 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+46 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+47 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+48 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+52 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+53 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+54 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+55 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+56 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+57 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+67 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+68 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+69 IQUEST : main_quest_lv93
+STATE : start
+STATE : state0
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . level >= 93
+STATE : state1_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv93._010_sendLetter)
+STATE : state1_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv93._010_sendLetter)
+STATE : state1_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv93._010_sendLetter)
+WHEN  : MOB1_1.kill
+STATE : state1_4
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : MOB1_1.kill
+WHEN  : 20380.chat (gameforge.main_quest_lv93._010_sendLetter)
+STATE : state2_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv93._150_sendLetter)
+STATE : state2_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv93._150_sendLetter)
+WHEN  : MOB2_1.kill
+STATE : state2_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : MOB2_1.kill
+WHEN  : 20380.chat (gameforge.main_quest_lv93._150_sendLetter)
+STATE : state3_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv93._250_sendLetter)
+STATE : state3_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20008.chat (gameforge.main_quest_lv93._250_sendLetter)
+STATE : state3_3
+WHEN  : login
+	with get_global_time ( ) - pc . getf ( "main_quest_lv93" , "ockgu_access_time" ) >= 24 * 60 * 60
+WHEN  : 20008.chat (gameforge.main_quest_lv93._400_npcChat)
+STATE : state4_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20008.chat (gameforge.main_quest_lv93._400_npcChat)
+STATE : state4_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20008.chat (gameforge.main_quest_lv93._400_npcChat)
+STATE : state4_3
+WHEN  : login
+	with get_global_time ( ) - pc . getf ( "main_quest_lv93" , "item4_make_start_time" ) >= 24 * 60 * 60
+WHEN  : 20008.chat (gameforge.main_quest_lv93._400_npcChat)
+STATE : state4_4
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20008.chat (gameforge.main_quest_lv93._400_npcChat)
+STATE : state5_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv93._580_sendLetter)
+STATE : __COMPLETE__
+WHEN  : enter
+nvalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+70 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+71 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+72 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+73 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+74 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+78 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+79 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+80 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+81 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+82 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+83 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+5 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+8 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+12 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+16 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+17 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+18 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+19 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+20 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+21 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+22 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+26 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+27 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+28 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+29 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+30 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+31 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+35 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+36 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+37 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+38 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+39 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+40 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+41 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+45 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+46 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+47 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+48 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+49 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+50 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+51 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+52 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+53 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+54 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+58 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+59 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+60 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+61 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+62 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+63 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+64 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+65 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+66 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+67 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+68 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+69 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+74 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+75 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+81 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+82 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+83 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+84 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+85 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+86 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+87 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+88 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+89 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+90 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+91 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+92 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+93 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+97 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+98 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+99 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+100 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+101 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+102 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+103 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+104 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+105 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+111 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+112 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+113 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+114 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+115 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+116 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+117 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+118 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+119 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+120 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+124 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+125 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+126 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+127 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+128 InvaQUEST : main_quest_lv94
+STATE : start
+STATE : state0
+WHEN  : login or
+WHEN  : levelup or
+WHEN  : enter
+	with pc . level >= 94
+STATE : state1_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20380.chat (gameforge.main_quest_lv94._010_sendLetter)
+STATE : state1_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : REWARD1_ITEM2.use
+STATE : state2_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._080_sendLetter)
+STATE : state2_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._080_sendLetter)
+WHEN  : target (__TARGET__.arrive)
+STATE : state2_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._080_sendLetter)
+WHEN  : target (__TARGET__.arrive)
+STATE : state2_5
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._080_sendLetter)
+WHEN  : target (__TARGET__.arrive)
+STATE : state2_6
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._080_sendLetter)
+STATE : state3_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._290_sendLetter)
+STATE : state3_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._290_sendLetter)
+WHEN  : MOB3_1.kill
+STATE : state3_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : MOB3_1.kill
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._290_sendLetter)
+STATE : state4_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._430_sendLetter)
+STATE : state4_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._430_sendLetter)
+WHEN  : MOB4_1.kill
+WHEN  : MOB4_2.kill
+WHEN  : MOB4_3.kill
+STATE : state4_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._430_sendLetter)
+STATE : state5_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._560_sendLetter)
+STATE : state5_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._560_sendLetter)
+WHEN  : 3791.kill
+STATE : state5_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 3791.kill
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._560_sendLetter)
+STATE : state6_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._690_sendLetter)
+STATE : state6_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._690_sendLetter)
+WHEN  : MOB6_1.kill or
+WHEN  : MOB6_2.kill or
+WHEN  : MOB6_3.kill or
+WHEN  : MOB6_4.kill or
+WHEN  : MOB6_5.kill or
+WHEN  : MOB6_6.kill or
+WHEN  : MOB6_7.kill
+STATE : state6_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : MOB6_1.kill or
+WHEN  : MOB6_2.kill or
+WHEN  : MOB6_3.kill or
+WHEN  : MOB6_4.kill or
+WHEN  : MOB6_5.kill or
+WHEN  : MOB6_6.kill or
+WHEN  : MOB6_7.kill
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._690_sendLetter)
+STATE : state7_1
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : GUARD.chat (gameforge.main_quest_lv94._850_sendLetter)
+STATE : state7_2
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : 20001.chat (gameforge.main_quest_lv94._850_sendLetter)
+STATE : state7_3
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+WHEN  : MOB7_1.kill or
+WHEN  : MOB7_2.kill or
+WHEN  : MOB7_3.kill or
+WHEN  : MOB7_4.kill or
+WHEN  : MOB7_5.kill or
+WHEN  : MOB7_6.kill or
+WHEN  : MOB7_7.kill
+WHEN  : 20001.chat (gameforge.main_quest_lv94._850_sendLetter)
+STATE : state7_4
+WHEN  : letter
+WHEN  : button or
+WHEN  : info
+pre_qc/main_quest_lv94.quest:1199:Abort trap (core dumped)
+lid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+129 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+130 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+131 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+132 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+138 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+139 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+140 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+141 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+142 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+143 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+144 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+145 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+146 Invalid syntax
+define [name] = [value]
+define group [name] = "["[v0],[v1], ... "]"
+Error occured on compile main_quest_lv94.quest
+
