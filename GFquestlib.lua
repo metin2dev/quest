@@ -1,4 +1,4 @@
-
+Remzi baba burda :D 
 -- returns a vnum from a table.
 -- the table must look like this:
 -- items = {
