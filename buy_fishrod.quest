@@ -1,100 +1,110 @@
 quest buy_fishrod begin
 	state start begin
 		when 9009.chat.gameforge.buy_fishrod._10_npcChat with pc.level>=7 and pc.level<=17 begin
-			say_title(gameforge.buy_fishrod._20_sayTitle)
-			say(gameforge.buy_fishrod._30_say)
+			say_title("Fischer: ")
+			say("Ein fantastischer Preis! Eine Angelrute mit[ENTER]rutschfestem Griff! Und dazu noch 100 Köder und[ENTER]20 Würmer als Gratisbeilage! Wir, 'Die Herren[ENTER]der besten Ruten', bieten unseren Kunden ein[ENTER]3-in-1 Angelruten-Paket für 3980 Yang an. Kaufen[ENTER]sie jetzt! ")
 			local b= select(gameforge.buy_fishrod._40_select, gameforge.buy_fishrod._50_select)
 			if 1==b then
 				if pc.money>=3980 then
 					pc.changemoney(-3980)
-					say_title(gameforge.buy_fishrod._20_sayTitle)
-					say(gameforge.buy_fishrod._60_say)
+					say_title("Fischer: ")
+					say("Du hast das 3-in-einem Angelruten-Paket[ENTER]erstanden. Viel Spaß damit! Und beachte bitte die[ENTER]beigelegte Notiz zum Angelwettbewerb. Bis bald! "
+gameforge.buy_fishrod._70_say = "Tut mir leid. Du besitzt nicht genügend Yang.[ENTER]Aber keine Sorge, die nächste Gelegenheit kommt[ENTER]bestimmt. Bis bald! "
+)
 					pc.give_item2("27400", 1)
 					pc.give_item2("27800", 100)
 					pc.give_item2("27801", 20)
 					setstate(notify_event)
 				else
-					say_title(gameforge.buy_fishrod._20_sayTitle)
-					say(gameforge.buy_fishrod._70_say)
+					say_title("Fischer: ")
+					say("Tut mir leid. Du besitzt nicht genügend Yang.[ENTER]Aber keine Sorge, die nächste Gelegenheit kommt[ENTER]bestimmt. Bis bald! "
+)
 				end
 			elseif 2==b then
 			else
-				say(string.format(gameforge.buy_fishrod._80_say, b))
+				say(string.format("inaktiver key [%s] ", b))
 			end
 		end
 	end
 	state notify_event begin
 		when letter begin
 			setskin(NOWINDOW)
-			makequestbutton(gameforge.buy_fishrod._90_makequestbutton)
-			q.set_title(gameforge.buy_fishrod._90_makequestbutton)
+			makequestbutton( "Informationen zum Angelwettbewerb ")
+			q.set_title("Informationen zum Angelwettbewerb ")
 			q.start()
 		end
 		when button begin
-			say_title(gameforge.buy_fishrod._100_sayTitle)
-			say(gameforge.buy_fishrod._110_say)
-			local b= select(gameforge.buy_fishrod._120_select, gameforge.buy_fishrod._130_select)
+			say_title("Notiz: ")
+			say("Vielen Dank für den Kauf des Angelrutenpakets.[ENTER]Mein Laden hat nicht nur gute Preise, sondern[ENTER]veranstaltet auch ein Angelturnier für Anfänger![ENTER]Der Hauptpreis lässt das Herz eines jeden[ENTER]Abenteurers höher schlagen - eine[ENTER]Anfängerwaffe+3! Bringe 5 tote Zander zum Fischer[ENTER]und du erhältst sofort deinen Gewinn.[ENTER]Dies ist eine seltene Gelegenheit! Nimm die[ENTER]Herausforderung an! "
+)
+			local b= select( "Teilnehmen ", "Ignorieren ")
 			if 1==b then
 				setstate(play_event)
 			elseif 2==b then
 				setstate(__COMPLETE__)
 				q.done()
 			else
-				say(string.format(gameforge.buy_fishrod._80_say, b))
+				say(string.format("inaktiver key [%s] ", b))
 			end
 		end
 		when info begin
-			say_title(gameforge.buy_fishrod._20_sayTitle)
-			say(gameforge.buy_fishrod._140_say)
-			local b= select(gameforge.buy_fishrod._120_select, gameforge.buy_fishrod._130_select)
+			say_title("Fischer: ")
+			say("Vielen Dank für den Kauf des Angelrutenpakets.[ENTER]Mein Laden hat nicht nur gute Preise, sondern[ENTER]veranstaltet auch ein Angelturnier für Anfänger![ENTER]Der Hauptpreis lässt das Herz eines jeden[ENTER]Abenteurers höher schlagen - eine[ENTER]Anfängerwaffe+3! Bringe 5 tote Zander zum Fischer[ENTER]und du erhältst sofort deinen Gewinn.[ENTER]Dies ist eine seltene Gelegenheit! Nimm die[ENTER]Herausforderung an! "
+)
+			local b= select("Teilnehmen ", "Ignorieren ")
 			if 1==b then
 				setstate(play_event)
 			elseif 2==b then
 				setstate(__COMPLETE__)
 				q.done()
 			else
-				say(string.format(gameforge.buy_fishrod._80_say, b))
+				say(string.format(g"inaktiver key [%s] ", b))
 			end
 		end
 	end
 	state play_event begin
 		when letter begin
 			setskin(NOWINDOW)
-			makequestbutton(gameforge.buy_fishrod._150_makequestbutton)
-			q.set_title(gameforge.buy_fishrod._150_makequestbutton)
+			makequestbutton("Angelwettbewerb ")
+			q.set_title("Angelwettbewerb ")
 			q.start()
 		end
 		when button begin
-			say_title(gameforge.buy_fishrod._20_sayTitle)
-			say(gameforge.buy_fishrod._160_say)
+			say_title("Fischer: ")
+			say("Fang einen Zander und töte ihn, indem du ihn[ENTER]anklickst. Bringe dem Fischer 5 tote Zander und[ENTER]nimm deine Belohnung in Empfang. "
+)
 		end
 		when info begin
-			say_title(gameforge.buy_fishrod._20_sayTitle)
-			say(gameforge.buy_fishrod._160_say)
+			say_title( "Fischer: ")
+			say("Fang einen Zander und töte ihn, indem du ihn[ENTER]anklickst. Bringe dem Fischer 5 tote Zander und[ENTER]nimm deine Belohnung in Empfang. "
+)
 		end
-		when 9009.chat.gameforge.buy_fishrod._170_npcChat with pc.countitem("27833")>=5 begin
-			say_title(gameforge.buy_fishrod._20_sayTitle)
-			say(gameforge.buy_fishrod._180_say)
+		when 9009.chat."Gewinn abholen " with pc.countitem("27833")>=5 begin
+			say_title("Fischer: ")
+			say("Hast du 5 tote Zander dabei? Tatsächlich![ENTER]Dann überreiche ich dir hiermit, wie versprochen,[ENTER]eine Anfängerwaffe+3. Viel Spaß damit! Und komm[ENTER]bald wieder! "
+)
 			setstate(reward)
 		end
-		when 9009.chat.gameforge.buy_fishrod._170_npcChat with pc.countitem("27833")<5 begin
-			say_title(gameforge.buy_fishrod._20_sayTitle)
-			say(gameforge.buy_fishrod._190_say)
+		when 9009.chat."Gewinn abholen " with pc.countitem("27833")<5 begin
+			say_title("Fischer: ")
+			say("Es tut mir leid. Ich kann dir den Gewinn nur dann[ENTER]überreichen, wenn du mir 5 tote Zander bringst.[ENTER]Versuche es weiter! "
+)
 		end
 	end
 	state reward begin
 		when letter begin
 			setskin(NOWINDOW)
-			makequestbutton(gameforge.buy_fishrod._200_makequestbutton)
-			q.set_title(gameforge.buy_fishrod._200_makequestbutton)
+			makequestbutton( "Gewinn des Angelwettbewerbs ")
+			q.set_title("Gewinn des Angelwettbewerbs ")
 			q.start()
 		end
 		when button begin
-			say_title(gameforge.buy_fishrod._210_sayTitle)
-			say(gameforge.buy_fishrod._220_say)
+			say_title("Information: ")
+			say("Du hast am Angelwettbewerb teilgenommen und dem[ENTER]Fischer 5 tote Zander gebracht. Als Belohnung[ENTER]erhältst du eine herrliche Kiste. "
+)
 			if pc.countitem("27833")>=5 then
 				pc.removeitem("27833", 5)
-				say(gameforge.buy_fishrod._230_say)
+				say("In der Kiste befindet sich eine Anfängerwaffe +3. ")
 				if pc.job==0 then
 					local r=number(1, 10)
 					if r==1 then
@@ -187,8 +197,9 @@ quest buy_fishrod begin
 					end
 				end
 			else
-				say_title(gameforge.buy_fishrod._20_sayTitle)
-				say(gameforge.buy_fishrod._240_say)
+				say_title("Fischer: ")
+				say( "Da du keine 5 Zander abgegeben hast,[ENTER]findest du nun eine leere Kiste vor. "
+)
 			end
 			setstate(__COMPLETE__)
 			q.done()
