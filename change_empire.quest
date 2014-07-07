@@ -1,16 +1,20 @@
 quest change_empire begin
        state start begin
-               when 20090.chat.gameforge.change_empire._10_npcChat  with game.get_event_flag("c_e") >0  begin
+               when 20090.chat."Reichswechsel "  with game.get_event_flag("c_e") >0  begin
 
                        local count = pc.get_change_empire_count() ;
                        if count >= 1 then
-                               say(gameforge.change_empire._20_say)
+                               say("Bitte warte, bis der Reichswechsel abgeschlossen[ENTER]ist. "
+)
                                return
                        end
-                       say_title(gameforge.change_empire._10_npcChat)
+                       say_title("Reichswechsel "
+)
 
-                       say(gameforge.change_empire._30_say)
-                       local s =  select(gameforge.locale.guild.yes, gameforge.locale.cancel)
+                       say("Für einen Reichswechsel musst du folgende[ENTER]Voraussetzungen erfüllen:[ENTER]1. Du darfst nicht Mitglied einer Gilde sein.[ENTER]2. Du darfst nicht verheiratet sein.[ENTER]3. Du darfst nicht gerade im Begriff sein zu[ENTER]heiraten.[ENTER]4. Du benötigst 500.000 Yang.[ENTER]Willst du das Reich wechseln? "
+)
+                       local s =  select("Ja ", "Abbrechen "
+)
 
                        if s == 1 then
                                change_empire.move_pc()
@@ -18,18 +22,24 @@ quest change_empire begin
                end
 
                when 71054.use begin
-                       say_title(gameforge.change_empire._10_npcChat)
+                       say_title( "Reichswechsel "
+)
 
-                       say(gameforge.change_empire._40_say)
+                       say("Mit diesem Item kannst du dein Reich wechseln. "
+)
                        if get_time() < pc.getqf("next_use_time") then
-                                say_title(gameforge.change_empire._50_sayTitle)
-                                say_reward(gameforge.change_empire._60_sayReward)
+                                say_title("Du kannst dieses Item nicht benutzen! "
+)
+                                say_reward("Du kannst das Reich nur einmal wechseln. "
+)
 
                                 if pc.is_gm() then
-                                    say(gameforge.change_empire._70_say)
-                                    local s =  select(gameforge.locale.guild.yes, gameforge.locale.guild.no)
+                                    say("GM - Soll die Zeitsperre auf Null gesetzt werden? "
+)
+                                    local s =  select("Ja ",  "Nein ")
                                     if s == 1 then
-                                        say(gameforge.change_empire._80_say)
+                                        say("Die benötigte Zeit wurde auf Null gesetzt. "
+)
                                         pc.setqf("next_use_time", 0)
                                     end
                                end
@@ -46,51 +56,65 @@ quest change_empire begin
 
                function move_pc()
                        if pc.is_engaged() then
-                            say_title(gameforge.change_empire._50_sayTitle)
-                            say_reward(gameforge.change_empire._90_sayReward)
-                            say(gameforge.change_empire._100_say)
+                            say_title("Du kannst dieses Item nicht benutzen! "
+)
+                            say_reward("Verheiratete Spieler können das[ENTER]Reich nicht wechseln. ")
+                            say("Wenn du heiratest, ist es dir nicht mehr möglich,[ENTER]das Reich zu wechseln. Nur unverheiratete Spieler[ENTER]sind dazu in der Lage. "
+)
                             return false
                        end
 
                        if pc.is_married() then
-                           say_title(gameforge.change_empire._50_sayTitle)
-                           say_reward(gameforge.change_empire._90_sayReward)
-                           say(gameforge.change_empire._110_say)
+                           say_title("Du kannst dieses Item nicht benutzen! "
+)
+                           say_reward("Verheiratete Spieler können das[ENTER]Reich nicht wechseln. "
+)
+                           say("Wenn du das Reich wechseln willst, musst du dich[ENTER]scheiden lassen. "
+)
                            return false
                        end
 
                        if pc.is_polymorphed() then
-                           say_title(gameforge.change_empire._50_sayTitle)
-                           say_reward(gameforge.change_empire._120_sayReward)
-                           say(gameforge.change_empire._130_say)
+                           say_title("Du kannst dieses Item nicht benutzen! "
+)
+                           say_reward("Du bist nicht in der Lage, dein Reich zu[ENTER]wechseln, während du verwandelt bist. ")
+                           say("Benutze dieses Item erst, wenn du nicht mehr[ENTER]verwandelt bist. ")
                            return false
                        end
 
                        if pc.has_guild() then
-                           say_title(gameforge.change_empire._50_sayTitle)
-                           say_reward(gameforge.change_empire._140_sayReward)
-                           say(gameforge.change_empire._150_say)
+                           say_title("Du kannst dieses Item nicht benutzen! "
+)
+                           say_reward( "Du bist nicht in der Lage, dein Reich zu[ENTER]wechseln, wenn du Mitglied einer Gilde bist. "
+)
+                           say("Benutze dieses Item erst, wenn du aus deiner[ENTER]Gilde ausgetreten bist. "
+)
                            return false
                        end
 
                        if pc.money < 500000 then
-                           say_title(gameforge.change_empire._50_sayTitle)
-                           say_reward(gameforge.change_empire._160_sayReward)
-                           say(gameforge.change_empire._170_say)
+                           say_title("Du kannst dieses Item nicht benutzen! "
+)
+                           say_reward("Du kannst dein Reich nicht wechseln,[ENTER]da du nicht genügend Yang besitzt. "
+)
+                           say("Benutze dieses Item erst, wenn du im Besitz von[ENTER]500.000 Yang bist. "
+)
                            return false
                        end
 
 
                        say(gameforge.change_empire._180_say)
-                       local s =  select ( gameforge.change_empire._190_select, gameforge.change_empire._200_select, gameforge.change_empire._205_select, gameforge.locale.cancel)
+                       local s =  select ( "Shinsoo  "
+, "Chunjo  ", "Jinno  ", "Abbrechen ")
 
                        if 4 == s then
                                return false
                        end
 
-                        say_reward(gameforge.change_empire._210_sayReward)
+                        say_reward("Überlege dir gut, ob du das Reich wirklich[ENTER]wechseln willst. Du kannst diese Entscheidung[ENTER]nicht rückgängig machen. "
+)
 
-                       local a =  select(gameforge.locale.guild.yes, gameforge.locale.cancel)
+                       local a =  select("Ja ", "Abbrechen ")
 
                        if 2 == a then
                                return false
@@ -100,21 +124,24 @@ quest change_empire begin
                        local oldempire = pc.get_empire()
 
                        if ret == 999 then
-                        say_title(gameforge.change_empire._220_sayTitle)
-                        say_reward(gameforge.change_empire._230_sayReward)
+                        say_title("Reichswechsel: ")
+                        say_reward("Bitte logge dich einmal komplett aus und wieder[ENTER]ein, damit der Vorgang abgeschlossen werden kann. "
+)
                         pc.change_gold(-500000)
                         pc.remove_item(71054) ;
 
-                        char_log(0, "CHANGE_EMPIRE",string.format(gameforge.change_empire._240_stringFormat, oldempire, s))
+                        char_log(0, "CHANGE_EMPIRE",string.format("%s -> %s ", oldempire, s))
 
                         return true
                        else
                            if ret == 1 then
-                                say(gameforge.change_empire._250_say)
+                                say("Du hast das Reich ausgewählt, in dem du dich[ENTER]bereits befindest. Lag es nicht in deiner Absicht[ENTER]zu wechseln? "
+)
                            elseif ret == 2 then
-                                say(gameforge.change_empire._260_say)
+                                say("Das Reich ist gewählt.[ENTER]Bisher warst du Mitglied einer Gilde. Denke[ENTER]daran, dass diese Gilde im neuen Reich fehlen[ENTER]wird. ")
                            elseif ret == 3 then
-                                say(gameforge.change_empire._270_say)
+                                say("Das Reich ist gewählt.[ENTER]Bisher warst du mit einem Ehepartner verheiratet.[ENTER]Denke daran, dass dies im neuen Reich nicht mehr[ENTER]der Fall sein wird. "
+)
                            end
                        end
 
